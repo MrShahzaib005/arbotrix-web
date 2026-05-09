@@ -1,0 +1,31 @@
+Arbotrix: Robotics & Automation Engineering Studio
+Arbotrix is a full-stack engineering platform and digital showcase for a specialized robotics studio. We bridge the gap between high-performance software and physical hardware, focusing on autonomous navigation, custom mechanical platforms, and AI-driven automation.
+
+🚀 The Vision
+Arbotrix is dedicated to building the future of service robots. From autonomous vacuum cleaners powered by ROS2 to heavy-duty logistics quadrupeds, our goal is to deliver precision-engineered solutions that scale industrial and consumer operations.
+
+🛠 Tech Stack
+This project utilizes a modern, unified full-stack architecture designed for performance, scalability, and seamless deployment.
+
+Frontend: React 18+ via Next.js 14 (App Router) for high-performance server-side rendering and SEO optimization.
+
+Styling: Tailwind CSS for a "premium-corporate" aesthetic with a custom high-contrast light theme.
+
+Animations: Framer Motion for hardware-accelerated, high-frame-rate UI interactions (Neura-inspired floating components).
+
+Backend: Next.js Serverless Functions for a secure, low-latency API layer.
+
+Database: PostgreSQL hosted via Supabase.
+
+ORM: Prisma for type-safe database queries and automated migrations.
+
+Deployment: Edge-ready deployment on Vercel.
+
+✨ Key Features
+Premium "Vibe-Coded" UI: A high-end interface featuring a floating "pill" glass-morphism navbar and animated hero sections.
+
+Dynamic Project Showcase: A staggered masonry grid displaying active R&D projects (DodoX, Tera-X, etc.).
+
+Lead Generation Engine: Integrated backend for real-time user engagement and "Notify Me" waitlist management.
+
+Robotics-First Aesthetics: Designed with an engineering-heavy focus, utilizing Berthold and Inter typography for a technical edge.
