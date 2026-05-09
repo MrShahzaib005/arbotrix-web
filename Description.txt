@@ -29,3 +29,5 @@ Dynamic Project Showcase: A staggered masonry grid displaying active R&D project
 Lead Generation Engine: Integrated backend for real-time user engagement and "Notify Me" waitlist management.
 
 Robotics-First Aesthetics: Designed with an engineering-heavy focus, utilizing Berthold and Inter typography for a technical edge.
+
+Sumayya
