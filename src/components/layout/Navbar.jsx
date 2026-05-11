@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/Button";
 import { cn } from "../../lib/utils";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // <-- Import the router hook
 
-const NAV_LINKS = ["Products", "Services", "Careers", "Contact"];
+const NAV_LINKS = ["Products", "Services", "Careers", "Contact", "Portfolio"];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState(NAV_LINKS[0]);
+  const pathname = usePathname(); // <-- Get the current URL path
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -30,32 +32,43 @@ export const Navbar = () => {
     >
       <div className="px-8 flex items-center justify-between">
         {/* Logo */}
-        <div className="font-heading text-2xl font-black tracking-tighter text-black flex items-center">
+        <Link href="/" className="font-heading text-2xl font-black tracking-tighter text-black flex items-center">
           arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
-        </div>
+        </Link>
 
         {/* Center Links */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <div
-              key={link}
-              className="relative cursor-pointer text-sm font-bold text-text-main hover:text-accent-blue transition-colors"
-              onMouseEnter={() => setActiveLink(link)}
-            >
-              {link}
-              {activeLink === link && (
-                <motion.div
-                  layoutId="nav-underline"
-                  className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-accent-blue rounded-full"
-                />
-              )}
-            </div>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const href = `/${link.toLowerCase()}`;
+            const isActive = pathname === href; // Check if the current URL matches the link
+
+            return (
+              <Link
+                key={link}
+                href={href}
+                className={cn(
+                  "relative cursor-pointer text-sm font-bold transition-colors duration-200",
+                  isActive 
+                    ? "text-accent-blue" // Hard-highlight the active page
+                    : "text-gray-500 hover:text-black" // Dim inactive links, darken on hover
+                )}
+              >
+                {link}
+                
+                {/* Simple static underline for the active page */}
+                {isActive && (
+                  <span className="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-accent-blue rounded-full" />
+                )}
+              </Link>
+            );
+          })}
         </div>
 
         {/* CTA Area */}
         <div className="hidden md:flex items-center gap-6">
-          <a href="#" className="text-sm font-bold text-black hover:text-accent-blue transition-colors">Log In</a>
+          <Link href="/login" className="text-sm font-bold text-black hover:text-accent-blue transition-colors">
+            Log In
+          </Link>
           <Button variant="solid" className="py-2.5 px-6 text-xs">Register</Button>
         </div>
       </div>
