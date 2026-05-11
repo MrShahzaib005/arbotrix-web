@@ -4,7 +4,7 @@ import WhatWeDo from "@/components/sections/home/WhatWeDo";
 import NumbersBar from "@/components/sections/home/NumbersBar";
 import FeaturedProject from "@/components/sections/home/FeaturedProject";
 import HomeProductTeaser from "@/components/sections/home/HomeProductTeaser";
-import FooterCTA from "@/components/sections/home/FooterCTA";
+import TeamSection from "@/components/sections/home/TeamSection";
 
 export default function HomePage() {
   return (
@@ -15,7 +15,7 @@ export default function HomePage() {
       <NumbersBar />
       <FeaturedProject />
       <HomeProductTeaser />
-      <FooterCTA />
+      <TeamSection />
     </main>
   );
 }

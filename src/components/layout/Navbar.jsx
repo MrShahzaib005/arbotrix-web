@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from "lucide-react";
 
-const NAV_LINKS = ["Products", "Services", "Careers", "Contact"];
+const NAV_LINKS = ["Products", "Services", "Careers", "Contact", "Courses"];
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
