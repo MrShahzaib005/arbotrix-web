@@ -1,25 +1,21 @@
-import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
-import { Hero } from "../components/sections/Hero";
-import { Capabilities } from "../components/sections/Capabilities";
-import { StatsBar } from "../components/sections/StatsBar";
-import { FeaturedProject } from "../components/sections/FeaturedProject";
-import { ProductTeaser } from "../components/sections/ProductTeaser";
-import { CoursesTeaser } from "../components/sections/CoursesTeaser";
+import { Navbar } from "@/components/layout/Navbar";
+import Hero from "@/components/sections/home/Hero";
+import WhatWeDo from "@/components/sections/home/WhatWeDo";
+import NumbersBar from "@/components/sections/home/NumbersBar";
+import FeaturedProject from "@/components/sections/home/FeaturedProject";
+import HomeProductTeaser from "@/components/sections/home/HomeProductTeaser";
+import FooterCTA from "@/components/sections/home/FooterCTA";
 
-function App() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-bg-primary text-white">
+    <main className="min-h-screen bg-[#F8F9FB] text-black selection:bg-accent-blue selection:text-white">
       <Navbar />
       <Hero />
-      <Capabilities />
-      <StatsBar />
+      <WhatWeDo />
+      <NumbersBar />
       <FeaturedProject />
-      <ProductTeaser />
-      <CoursesTeaser />
-      <Footer />
+      <HomeProductTeaser />
+      <FooterCTA />
     </main>
   );
 }
-
-export default App;

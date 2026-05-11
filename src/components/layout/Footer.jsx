@@ -1,35 +1,46 @@
-"use client";
-import { Button } from "../ui/Button";
+import Link from "next/link";
 
-export const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="w-full flex flex-col">
-      {/* Big CTA */}
-      <div className="bg-bg-secondary py-32 px-6 flex flex-col items-center text-center border-t border-[#1A2332]">
-        <h2 className="font-heading text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-4">
-          Ready to build something real?
-        </h2>
-        <p className="font-body text-gray-400 text-lg mb-10 max-w-xl">
-          Talk to us. No jargon. Just engineering.
-        </p>
-        <Button variant="solid" className="px-10 py-4 text-lg">Get In Touch</Button>
-      </div>
-
-      {/* Slim Footer */}
-      <div className="bg-black py-8 px-6 border-t border-[#1A2332]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="font-heading text-xl font-black tracking-tighter">
-            AR<span className="text-accent-cyan">BO</span>TRIX
+    <footer className="bg-black text-white py-16 border-t border-gray-900">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+        
+        {/* Brand */}
+        <div className="col-span-1 md:col-span-2">
+          <div className="font-heading text-2xl font-black tracking-tighter text-white mb-4 flex items-center">
+            arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
           </div>
-          <div className="flex gap-6 font-mono text-xs text-gray-500 uppercase">
-            <a href="#" className="hover:text-accent-cyan transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-accent-cyan transition-colors">GitHub</a>
-          </div>
-          <div className="font-mono text-xs text-gray-600">
-            © {new Date().getFullYear()} Arbotrix. All Rights Reserved.
+          <p className="text-gray-500 text-sm max-w-sm mb-6 leading-relaxed">
+            Bridging the gap between high-performance software architecture and precision hardware. Built for scale, engineered for reality.
+          </p>
+          <div className="text-xs text-gray-600">
+            © {new Date().getFullYear()} Arbotrix Robotics. All rights reserved.
           </div>
         </div>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Architecture</h4>
+          <ul className="space-y-4 text-sm text-gray-500">
+            <li><Link href="/products" className="hover:text-accent-blue transition-colors">The Fleet</Link></li>
+            <li><Link href="/services" className="hover:text-accent-blue transition-colors">Engineering Services</Link></li>
+            <li><Link href="/careers" className="hover:text-accent-blue transition-colors">Student Courses</Link></li>
+            <li><Link href="/contact" className="hover:text-accent-blue transition-colors">Contact Terminal</Link></li>
+          </ul>
+        </div>
+
+        {/* Legal / Social */}
+        <div>
+          <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Network</h4>
+          <ul className="space-y-4 text-sm text-gray-500">
+            <li><a href="#" className="hover:text-accent-blue transition-colors">LinkedIn</a></li>
+            <li><a href="#" className="hover:text-accent-blue transition-colors">GitHub Repository</a></li>
+            <li><Link href="/privacy" className="hover:text-accent-blue transition-colors">Privacy Protocol</Link></li>
+            <li><Link href="/terms" className="hover:text-accent-blue transition-colors">Terms of Service</Link></li>
+          </ul>
+        </div>
+
       </div>
     </footer>
   );
-};
+}
