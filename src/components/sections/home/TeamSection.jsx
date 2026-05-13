@@ -49,15 +49,14 @@ const TEAM = [
 export default function TeamSection() {
   return (
     <section className="bg-[#F8F9FB] py-24 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-8">
 
-        {/* Header */}
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-8 mb-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-14"
         >
           <p className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] font-bold mb-3">
             Leadership
@@ -70,56 +69,55 @@ export default function TeamSection() {
             Engineers and builders who ship real robots to real clients.
           </p>
         </motion.div>
-
-        {/* Scrollable Row */}
-        <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-          {TEAM.map((member, i) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              /* Square: fixed 220x220 — adjust size here if needed */
-              className="group relative flex-shrink-0 w-[220px] h-[220px] rounded-2xl overflow-hidden cursor-pointer snap-start"
-            >
-              {/* Photo */}
-              <img
-                src={member.img}
-                alt={member.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-
-              {/* Subtle bottom gradient always visible */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-              {/* INFO PANEL — slides from right on hover */}
-              <div className="
-                absolute inset-0
-                bg-gradient-to-br from-black/95 to-accent-blue/70
-                flex flex-col justify-center items-start
-                p-6
-                translate-x-full
-                group-hover:translate-x-0
-                transition-transform duration-500 ease-in-out
-              ">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-white/70 font-bold mb-3">
-                  {member.dept}
-                </span>
-                <h3 className="font-heading font-black text-white text-base leading-tight mb-2">
-                  {member.name}
-                </h3>
-                <p className="font-body text-gray-300 text-xs leading-snug">
-                  {member.role}
-                </p>
-                <div className="mt-5 w-8 h-0.5 bg-accent-blue rounded-full" />
-              </div>
-
-            </motion.div>
-          ))}
-        </div>
-
       </div>
+
+      {/* Full width 7-column grid — no scroll, no bars */}
+      <div className="w-full grid grid-cols-7 gap-0">
+        {TEAM.map((member, i) => (
+          <motion.div
+            key={member.name}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="group relative aspect-square overflow-hidden cursor-pointer"
+          >
+            {/* Photo */}
+            <img
+              src={member.img}
+              alt={member.name}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+
+            {/* Subtle bottom gradient always on */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+            {/* INFO PANEL — slides from right on hover */}
+            <div className="
+              absolute inset-0
+              bg-gradient-to-br from-black/95 to-accent-blue/70
+              flex flex-col justify-center items-start
+              p-5
+              translate-x-full
+              group-hover:translate-x-0
+              transition-transform duration-500 ease-in-out
+            ">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-white/60 font-bold mb-2">
+                {member.dept}
+              </span>
+              <h3 className="font-heading font-black text-white text-sm leading-tight mb-1">
+                {member.name}
+              </h3>
+              <p className="font-body text-gray-300 text-xs leading-snug">
+                {member.role}
+              </p>
+              <div className="mt-4 w-6 h-0.5 bg-accent-blue rounded-full" />
+            </div>
+
+          </motion.div>
+        ))}
+      </div>
+
     </section>
   );
 }

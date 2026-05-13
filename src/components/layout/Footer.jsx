@@ -29,12 +29,25 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Legal / Social */}
+        {/* Network / Social */}
         <div>
           <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Network</h4>
           <ul className="space-y-4 text-sm text-gray-500">
-            <li><a href="#" className="hover:text-accent-blue transition-colors">LinkedIn</a></li>
-            <li><a href="#" className="hover:text-accent-blue transition-colors">GitHub Repository</a></li>
+            <li>
+              <a href="https://www.linkedin.com/company/arbotrix/" target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">
+                💼 LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/923195447944" target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">
+                💬 WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/arbotrix_?igsh=MWxzYzQzY25va3d0dQ==" target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">
+                📸 Instagram
+              </a>
+            </li>
             <li><Link href="/privacy" className="hover:text-accent-blue transition-colors">Privacy Protocol</Link></li>
             <li><Link href="/terms" className="hover:text-accent-blue transition-colors">Terms of Service</Link></li>
           </ul>
