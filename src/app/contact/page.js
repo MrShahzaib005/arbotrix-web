@@ -1,30 +1,23 @@
 import { Navbar } from "@/components/layout/Navbar";
-import UnifiedContactForm from "@/components/sections/contact/UnifiedContactForm";
-import DirectContactInfo from "@/components/sections/contact/DirectContactInfo";
+import ContactHero from "@/components/sections/contact/ContactHero";
+import ContactForm from "@/components/sections/contact/ContactForm";
+import ClientSatisfaction from "@/components/sections/contact/ClientSatisfaction";
 
 export const metadata = {
-  title: "Contact Us | Arbotrix Robotics",
-  description: "Get in touch for custom robotics solutions or enroll in our engineering courses.",
+  title: "Contact | Arbotrix Robotics",
+  description: "Get in touch with the Arbotrix team.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-black selection:bg-accent-blue selection:text-white flex flex-col">
+    <main className="min-h-screen bg-[#F8F9FB] text-black selection:bg-accent-blue selection:text-white">
       <Navbar />
-      <div className="flex-grow pt-32 pb-24 max-w-4xl mx-auto px-6 w-full flex flex-col space-y-16">
-        
-        {/* Header Section */}
-        <div className="text-center space-y-4">
-          <h1 className="text-5xl md:text-6xl font-black tracking-tighter">
-            Join the Revolution
-          </h1>
-          <p className="text-gray-500 font-medium">
-            Whether you are a business needing automation or a student ready to build, we are here.
-          </p>
+      <ContactHero />
+      <div className="bg-[#000000] px-6 py-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <ContactForm />
+          <ClientSatisfaction />
         </div>
-
-        <UnifiedContactForm />
-        <DirectContactInfo />
       </div>
     </main>
   );
