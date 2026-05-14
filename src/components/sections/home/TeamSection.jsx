@@ -88,19 +88,19 @@ const FOUNDERS = [
   { 
     name: "AQIL KHAN", 
     role: "CEO & Founder", 
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/aqil-khan.jpeg", 
     bio: "Driving the strategic vision and business growth of Arbotrix. Focuses on scaling autonomous solutions for enterprise clients." 
   },
   { 
     name: "KASHAF NOOR", 
     role: "COO & Co-Founder", 
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/kashaf-noor.jpeg", 
     bio: "Leading daily operations and advancing the machine learning pipelines that power our core AI architecture." 
   },
   { 
     name: "SHAHZAIB", 
     role: "CTO & Co-Founder", 
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/shahzaib-arbo.jpeg", 
     bio: "Architecting the technical infrastructure, bridging the gap between high-level software and precision hardware." 
   },
 ];
@@ -110,25 +110,25 @@ const CORE_TEAM = [
   { 
     name: "SUMAYYA", 
     role: "Head of Design", 
-    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/sumayya.jpeg", 
     bio: "Crafting intuitive, futuristic user experiences and translating complex robotic systems into clean interfaces." 
   },
   { 
     name: "ALI", 
     role: "Computer Vision", 
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/ali-boy.jpeg", 
     bio: "Developing robust perception systems and YOLO pipelines for autonomous spatial navigation." 
   },
   { 
     name: "SAIM", 
     role: "Mechanical Eng", 
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/saim.jpeg", 
     bio: "Designing durable, precision-engineered robotic chassis built for real-world industrial environments." 
   },
   { 
     name: "ANAS", 
     role: "Embedded Systems", 
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop", 
+    img: "/images/anas-bhai.jpeg", 
     bio: "Writing low-level C/C++ to bridge our ROS2 software algorithms with physical hardware control." 
   }
 ];
