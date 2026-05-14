@@ -21,13 +21,13 @@ export default function WhatWeDo() {
               <motion.div
                 whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,163,255,0.1)", borderColor: "rgba(0,163,255,0.3)" }}
                 transition={{ duration: 0.2 }}
-                className="bg-white border border-gray-100 p-8 rounded-3xl cursor-pointer h-full flex flex-col items-start group"
+                className="bg-gray-900 border border-gray-800 p-8 rounded-3xl cursor-pointer h-full flex flex-col items-start group"
               >
-                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent-blue/10 transition-colors">
-                  <Icon className="w-6 h-6 text-black group-hover:text-accent-blue transition-colors" />
+                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-6 group-hover:bg-accent-blue/10 transition-colors">
+                  <Icon className="w-6 h-6 text-white group-hover:text-accent-blue transition-colors" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{area.title}</h3>
-                <p className="text-gray-500 text-sm">{area.desc}</p>
+                <h3 className="text-xl font-bold mb-2 text-white">{area.title}</h3>
+                <p className="text-gray-400 text-sm">{area.desc}</p>
               </motion.div>
             </Link>
           );
