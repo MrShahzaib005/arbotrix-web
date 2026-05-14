@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function ContactHero() {
   return (
-    <section className="relative w-full h-[500px] flex items-center overflow-hidden">
+    <section className="relative w-full h-[630px] flex items-center overflow-hidden">
 
       {/* Robot background image */}
       <img
@@ -42,7 +42,7 @@ export default function ContactHero() {
           <motion.span
             animate={{ opacity: [1, 0.3, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-2 h-2 rounded-full bg-accent-blue"
+            className="w-3 h-3 rounded-full bg-accent-blue"
           />
           <span className="font-mono text-xs uppercase tracking-widest text-accent-blue font-bold">
             We're Online
@@ -54,7 +54,7 @@ export default function ContactHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-heading text-5xl md:text-7xl font-black text-white uppercase leading-[1.0] mb-5"
+          className="font-heading text-6xl md:text-8xl font-black text-white uppercase leading-[1.0] mb-5"
         >
           Let's Build <br />
           <span className="text-accent-blue">Something Real.</span>
@@ -65,7 +65,7 @@ export default function ContactHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-body text-gray-300 text-lg max-w-lg"
+          className="font-body text-gray-300 text-2xl max-w-lg"
         >
           Whether it's a custom robot, a collaboration, or just a question — we're here.
         </motion.p>

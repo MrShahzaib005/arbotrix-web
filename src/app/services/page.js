@@ -10,10 +10,14 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-white text-black selection:bg-accent-blue selection:text-white">
+    <main className="min-h-screen bg-[#0A0A0A] text-white selection:bg-accent-blue selection:text-white">
       <Navbar />
-      <div className="pt-32 pb-24 space-y-32 max-w-7xl mx-auto px-8">
-        <ServiceCards />
+
+      {/* Hero — full bleed, no side padding, no max-width */}
+      <ServiceCards />
+
+      {/* Rest of page — constrained width, dark bg continues */}
+      <div className="pb-24 space-y-32 max-w-7xl mx-auto px-8">
         <ProcessTimeline />
         <ServicesContactForm />
       </div>
