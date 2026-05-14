@@ -103,17 +103,17 @@ const JOBS = [
 ];
 
 const DEPT_COLORS = {
-  "Engineering": "bg-blue-50 text-blue-700 border-blue-200",
-  "AI & Vision":  "bg-purple-50 text-purple-700 border-purple-200",
-  "Training":     "bg-green-50 text-green-700 border-green-200",
-  "Design":       "bg-orange-50 text-orange-700 border-orange-200",
+  "Engineering": "bg-blue-950  text-blue-400  border-blue-800",
+  "AI & Vision":  "bg-purple-950 text-purple-400 border-purple-800",
+  "Training":     "bg-green-950  text-green-400  border-green-800",
+  "Design":       "bg-orange-950 text-orange-400 border-orange-800",
 };
 
-export default function JobsBoard() {
+export default function CoursesBoard() {
   const [selectedJob, setSelectedJob] = useState(JOBS[0]);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 pt-16">
 
       {/* Header */}
       <motion.div
@@ -124,10 +124,10 @@ export default function JobsBoard() {
         <p className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] font-bold mb-3">
           [ Open Positions ]
         </p>
-        <h1 className="font-heading text-5xl md:text-6xl font-black text-black leading-tight">
+        <h1 className="font-heading text-5xl md:text-6xl font-black text-white leading-tight">
           Join Our Team.
         </h1>
-        <p className="font-body text-gray-500 text-lg mt-3 max-w-xl">
+        <p className="font-body text-gray-400 text-lg mt-3 max-w-xl">
           {JOBS.length} open roles across engineering, AI, design, and training.
         </p>
       </motion.div>
@@ -135,8 +135,8 @@ export default function JobsBoard() {
       {/* Split Panel */}
       <div className="flex flex-col lg:flex-row gap-5 min-h-[600px]">
 
-        {/* ── Left: Job List ── */}
-        <div className="lg:w-[380px] flex-shrink-0 flex flex-col gap-3 lg:overflow-y-auto lg:max-h-[700px] pr-1">
+        {/* Left: Job List */}
+        <div className="lg:w-[380px] flex-shrink-0 flex flex-col gap-3 lg:overflow-y-auto lg:max-h-[700px] pr-1 scrollbar-hide">
           {JOBS.map((job) => (
             <motion.button
               key={job.id}
@@ -144,30 +144,30 @@ export default function JobsBoard() {
               whileTap={{ scale: 0.98 }}
               className={`w-full text-left p-5 rounded-2xl border transition-all duration-200 ${
                 selectedJob.id === job.id
-                  ? "bg-white border-accent-blue shadow-md shadow-accent-blue/10"
-                  : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                  ? "bg-[#0d1a26] border-accent-blue shadow-lg shadow-accent-blue/10"
+                  : "bg-[#111111] border-white/10 hover:border-white/25 hover:bg-[#161616]"
               }`}
             >
               {/* Top row */}
               <div className="flex items-center justify-between mb-3">
-                <span className={`font-mono text-[10px] font-bold uppercase tracking-widest border px-2.5 py-1 rounded-md ${DEPT_COLORS[job.dept] || "bg-gray-50 text-gray-600 border-gray-200"}`}>
+                <span className={`font-mono text-[10px] font-bold uppercase tracking-widest border px-2.5 py-1 rounded-md ${DEPT_COLORS[job.dept] || "bg-white/5 text-gray-400 border-white/10"}`}>
                   {job.dept}
                 </span>
-                <span className="flex items-center gap-1.5 font-mono text-xs text-green-600 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                <span className="flex items-center gap-1.5 font-mono text-xs text-green-400 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                   {job.status}
                 </span>
               </div>
 
               {/* Title */}
               <h3 className={`font-heading text-lg font-black mb-2 transition-colors ${
-                selectedJob.id === job.id ? "text-accent-blue" : "text-black"
+                selectedJob.id === job.id ? "text-accent-blue" : "text-white"
               }`}>
                 {job.title}
               </h3>
 
               {/* Meta */}
-              <div className="flex items-center gap-4 font-mono text-xs text-gray-400">
+              <div className="flex items-center gap-4 font-mono text-xs text-gray-500">
                 <span className="flex items-center gap-1"><MapPin size={11} />{job.location}</span>
                 <span className="flex items-center gap-1"><Clock size={11} />{job.type}</span>
                 <span className="flex items-center gap-1"><DollarSign size={11} />{job.salary}</span>
@@ -176,7 +176,7 @@ export default function JobsBoard() {
           ))}
         </div>
 
-        {/* ── Right: Job Detail ── */}
+        {/* Right: Job Detail */}
         <div className="flex-1">
           <AnimatePresence mode="wait">
             <motion.div
@@ -185,15 +185,15 @@ export default function JobsBoard() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-white border border-gray-200 rounded-2xl p-8 md:p-10 h-full"
+              className="bg-[#111111] border border-white/10 rounded-2xl p-8 md:p-10 h-full"
             >
               {/* Dept tag */}
-              <span className={`font-mono text-[10px] font-bold uppercase tracking-widest border px-2.5 py-1 rounded-md ${DEPT_COLORS[selectedJob.dept] || "bg-gray-50 text-gray-600 border-gray-200"}`}>
+              <span className={`font-mono text-[10px] font-bold uppercase tracking-widest border px-2.5 py-1 rounded-md ${DEPT_COLORS[selectedJob.dept] || "bg-white/5 text-gray-400 border-white/10"}`}>
                 {selectedJob.dept}
               </span>
 
               {/* Title */}
-              <h2 className="font-heading text-3xl md:text-4xl font-black text-black mt-4 mb-5">
+              <h2 className="font-heading text-3xl md:text-4xl font-black text-white mt-4 mb-5">
                 {selectedJob.title}
               </h2>
 
@@ -201,7 +201,7 @@ export default function JobsBoard() {
               <div className="flex flex-wrap items-center gap-4 font-mono text-sm text-gray-500 mb-8">
                 <span className="flex items-center gap-1.5"><MapPin size={13} />{selectedJob.location}</span>
                 <span className="flex items-center gap-1.5"><Clock size={13} />{selectedJob.type}</span>
-                <span className="flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 px-3 py-1 rounded-full font-bold">
+                <span className="flex items-center gap-1.5 bg-green-950 text-green-400 border border-green-800 px-3 py-1 rounded-full font-bold">
                   <DollarSign size={13} />{selectedJob.salary}
                 </span>
               </div>
@@ -209,31 +209,33 @@ export default function JobsBoard() {
               {/* Apply Button */}
               <a
                 href="/contact"
-                className="flex items-center justify-center gap-2 w-full bg-accent-blue hover:bg-blue-700 text-white font-heading font-black text-lg uppercase tracking-wider py-4 rounded-xl transition-colors duration-200 mb-10"
+                className="flex items-center justify-center gap-2 w-full bg-accent-blue hover:bg-blue-400 text-white font-heading font-black text-sm uppercase tracking-widest py-4 rounded-full transition-colors duration-200 mb-10"
               >
-                Apply Now <ChevronRight size={20} />
+                Apply Now <ChevronRight size={18} />
               </a>
 
               {/* About */}
               <div className="mb-8">
-                <p className="font-mono text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">
+                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 font-bold mb-3">
                   About This Role
                 </p>
-                <p className="font-body text-gray-600 text-base leading-relaxed">
+                {/* Blue accent bar */}
+                <div className="w-8 h-0.5 bg-accent-blue rounded-full mb-4" />
+                <p className="font-body text-gray-300 text-base leading-relaxed">
                   {selectedJob.about}
                 </p>
               </div>
 
               {/* Requirements */}
               <div>
-                <p className="font-mono text-xs uppercase tracking-widest text-gray-400 font-bold mb-4">
+                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 font-bold mb-4">
                   Requirements
                 </p>
                 <ul className="flex flex-col gap-3">
                   {selectedJob.requirements.map((req) => (
                     <li key={req} className="flex items-start gap-3">
                       <CheckCircle2 size={18} className="text-accent-blue mt-0.5 shrink-0" />
-                      <span className="font-body text-gray-700 text-sm leading-relaxed">{req}</span>
+                      <span className="font-body text-gray-400 text-sm leading-relaxed">{req}</span>
                     </li>
                   ))}
                 </ul>

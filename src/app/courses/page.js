@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
-import CoursesBoard from "@/components/sections/courses/CoursesBoard";
+import CourseCards from "@/components/sections/courses/CourseCards";
 import Achievements from "@/components/sections/courses/acheivements";
 
 export const metadata = {
@@ -9,12 +9,56 @@ export const metadata = {
 
 export default function CoursesPage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-black selection:bg-accent-blue selection:text-white">
+    <main className="min-h-screen bg-[#0A0A0A] text-white selection:bg-accent-blue selection:text-white">
       <Navbar />
-      <div className="pt-32 pb-24 max-w-7xl mx-auto px-6 flex flex-col gap-24">
-        <CoursesBoard />
+
+      {/* Hero — full bleed */}
+      <CoursesHero />
+
+      {/* Rest — constrained */}
+      <div className="pb-24 max-w-7xl mx-auto px-6 flex flex-col gap-24">
+        <CourseCards />
         <Achievements />
       </div>
     </main>
+  );
+}
+
+// Inline hero so we don't need a separate file
+function CoursesHero() {
+  return (
+    <section className="relative w-full min-h-[85vh] flex items-center overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop"
+        alt="Robot background"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/70 to-black/40" />
+
+      {/* Orbs */}
+      <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-accent-blue/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-[350px] h-[350px] bg-accent-blue/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-8 w-full pt-32 pb-20">
+        <div className="inline-flex items-center gap-2 border border-accent-blue/40 bg-accent-blue/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
+          <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse" />
+          <span className="font-mono text-xs uppercase tracking-widest text-accent-blue font-bold">
+            Now Enrolling
+          </span>
+        </div>
+
+        <h1 className="font-heading text-5xl md:text-7xl font-black text-white leading-none uppercase mb-6">
+          Learn Real <br />
+          <span className="text-accent-blue">Robotics.</span>
+        </h1>
+
+        <p className="font-body text-gray-300 text-xl leading-relaxed max-w-xl mb-8">
+          Industry-led courses on ROS2, autonomous navigation, and spatial AI.
+          Built by engineers who ship real hardware.
+        </p>
+
+        <div className="origin-left w-16 h-1 bg-accent-blue rounded-full" />
+      </div>
+    </section>
   );
 }
