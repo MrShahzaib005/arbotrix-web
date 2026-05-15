@@ -108,28 +108,28 @@ const FOUNDERS = [
 // 2. Separated the Core Engineering & Design Team
 const CORE_TEAM = [
   { 
-    name: "SUMAYYA", 
-    role: "Head of Design", 
+    name: "SUMAYYA ZAHID", 
+    role: "AI Engineer", 
     img: "/images/sumayya.jpeg", 
-    bio: "Crafting intuitive, futuristic user experiences and translating complex robotic systems into clean interfaces." 
+    bio: "Building intelligent systems through machine learning, deep learning, and real time AI solutions for automation and smart applications." 
   },
   { 
-    name: "ALI", 
-    role: "Computer Vision", 
+    name: "SYED ALI", 
+    role: "Robotic Hardware Engineer", 
     img: "/images/ali-boy.jpeg", 
-    bio: "Developing robust perception systems and YOLO pipelines for autonomous spatial navigation." 
+    bio: "Designing reliable hardware architectures, embedded systems, and sensor integrations for high-performance smart devices." 
   },
   { 
     name: "SAIM", 
-    role: "Mechanical Eng", 
+    role: "Robotic Eng and CAD Designer", 
     img: "/images/saim.jpeg", 
-    bio: "Designing durable, precision-engineered robotic chassis built for real-world industrial environments." 
+    bio: "Designing intelligent robotic systems with precision CAD modeling, combining automation, mechanical design, and smart engineering solutions for real-world applications." 
   },
   { 
-    name: "ANAS", 
-    role: "Embedded Systems", 
+    name: "DR ANAS", 
+    role: "Robotic Engineer", 
     img: "/images/anas-bhai.jpeg", 
-    bio: "Writing low-level C/C++ to bridge our ROS2 software algorithms with physical hardware control." 
+    bio: "Developing autonomous robotic systems by combining AI, software, sensors, and precision hardware for real-world applications." 
   }
 ];
 
@@ -170,7 +170,7 @@ const TeamCard = ({ member }) => (
 export default function TeamSection() {
   return (
     <section className="bg-[#05050A] py-32 border-t border-gray-900">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-9">
         
         {/* Main Header */}
         <div className="mb-20 text-center md:text-left">

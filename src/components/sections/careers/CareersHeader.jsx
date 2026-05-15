@@ -21,9 +21,9 @@ export default function CareersHeader() {
 
       {/* Robot background image */}
       <img
-        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1600&auto=format&fit=crop"
+        src="images\dodopic(1).png"
         alt="Robot background"
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-400 h-380 object-cover object-center"
       />
 
       {/* Dark gradient — heavy left, fades right */}
