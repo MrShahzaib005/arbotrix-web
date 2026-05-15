@@ -1,17 +1,22 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomeProductTeaser() {
   const [email, setEmail] = useState("");
+  const [mounted, setMounted] = useState(false); // 1. Add mounted state
+
+  // 2. Set mounted to true only after client hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Teaser Lead:", email);
   };
-
   return (
-    <section className="relative w-full bg-black py-24 overflow-hidden border-t border-gray-900">
+    <section className="relative w-full bg-[#0B0D14] py-24 overflow-hidden border-t border-gray-900">
       {/* Background Code-Only Circuit/Particle Effect */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         {[...Array(20)].map((_, i) => (

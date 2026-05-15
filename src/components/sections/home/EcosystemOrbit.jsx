@@ -11,7 +11,7 @@ const OrbitingNode = ({ icon: Icon, radius, duration, reverse = false, delay = 0
       transition={{ duration, repeat: Infinity, ease: "linear", delay }}
     >
       <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#05050A] border border-gray-800 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.15)] text-gray-400"
+        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#0B0D14] border border-gray-800 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,163,255,0.15)] text-gray-400"
         animate={{ rotate: reverse ? 360 : -360 }} // Counter-rotate so icons stay upright
         transition={{ duration, repeat: Infinity, ease: "linear", delay }}
       >
@@ -23,7 +23,7 @@ const OrbitingNode = ({ icon: Icon, radius, duration, reverse = false, delay = 0
 
 export default function EcosystemOrbit() {
   return (
-    <section className="py-32 bg-[#05050A] border-t border-gray-900 overflow-hidden relative flex flex-col items-center justify-center">
+    <section className="py-32 bg-[#0B0D14] border-t border-gray-900 overflow-hidden relative flex flex-col items-center justify-center">
       
       <div className="text-center z-10 mb-16 relative">
         <span className="text-accent-blue font-bold tracking-widest uppercase text-xs mb-4 block">

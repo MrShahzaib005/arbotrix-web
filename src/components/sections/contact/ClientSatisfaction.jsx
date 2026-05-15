@@ -61,7 +61,7 @@ export default function ClientSatisfaction() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.15 }}
-      className="bg-black rounded-2xl p-8 md:p-10 border border-white/10 h-full"
+      className="bg-[#0B0D14] rounded-2xl p-8 md:p-10 border border-white/10 h-full"
     >
       {/* Header */}
       <p className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] font-bold mb-3">

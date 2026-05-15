@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-accent-blue selection:text-white flex flex-col">
+    <main className="min-h-screen bg-[#0B0D14] text-white selection:bg-accent-blue selection:text-white flex flex-col">
       <Navbar />
       <div className="pt-32 pb-24 space-y-32">
         <ProductHeroWaitlist />

@@ -13,7 +13,7 @@ export default function ContactHero() {
       />
 
       {/* Black overlay */}
-      <div className="absolute inset-0 bg-black/75" />
+      <div className="absolute inset-0 bg-[#0B0D14]/75" />
 
       {/* Animated blue orb bottom left */}
       <motion.div

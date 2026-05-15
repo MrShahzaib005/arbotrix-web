@@ -6,18 +6,20 @@ import FeaturedProject from "@/components/sections/home/FeaturedProject";
 import HomeProductTeaser from "@/components/sections/home/HomeProductTeaser";
 import TeamSection from "@/components/sections/home/TeamSection";
 import EcosystemOrbit from "@/components/sections/home/EcosystemOrbit";
+import PreFooterCTA from "@/components/sections/home/PreFooterCTA";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#05050A] text-white selection:bg-accent-blue selection:text-white">
+    <main className="min-h-screen bg-[#0B0D14] text-white selection:bg-accent-blue selection:text-white">
       <Navbar />
       <Hero />
-      <WhatWeDo />
+      {/* <WhatWeDo /> */}
       <NumbersBar />
       <FeaturedProject />
       {/* <EcosystemOrbit /> */}
-      <HomeProductTeaser />
+      {/* <HomeProductTeaser /> */}
       <TeamSection />
+      <PreFooterCTA />
     </main>
   );
 }

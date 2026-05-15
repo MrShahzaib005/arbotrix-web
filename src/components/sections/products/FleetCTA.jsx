@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function FleetCTA() {
   return (
-    <section className="bg-black py-24 px-6">
+    <section className="bg-[#0B0D14] py-24 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <motion.div
           initial={{ opacity: 0, x: -20 }}

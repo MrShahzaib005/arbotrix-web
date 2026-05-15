@@ -65,12 +65,12 @@ export default function ContactForm() {
           <div className="flex flex-col gap-1.5">
             <label className="font-mono text-xs uppercase tracking-wider text-gray-500">Subject</label>
             <select className={inputClass + " appearance-none bg-white/5"}>
-              <option value="" className="bg-black">Select a topic</option>
-              <option className="bg-black">Custom Robotics Project</option>
-              <option className="bg-black">Partnership / Collaboration</option>
-              <option className="bg-black">Student Enrollment</option>
-              <option className="bg-black">Media / Press</option>
-              <option className="bg-black">General Question</option>
+              <option value="" className="bg-[#0B0D14]">Select a topic</option>
+              <option className="bg-[#0B0D14]">Custom Robotics Project</option>
+              <option className="bg-[#0B0D14]">Partnership / Collaboration</option>
+              <option className="bg-[#0B0D14]">Student Enrollment</option>
+              <option className="bg-[#0B0D14]">Media / Press</option>
+              <option className="bg-[#0B0D14]">General Question</option>
             </select>
           </div>
 

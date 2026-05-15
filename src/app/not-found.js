@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative overflow-hidden">
+    <main className="min-h-screen bg-[#0B0D14] text-white flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background Grid/Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-blue/20 blur-[100px] rounded-full pointer-events-none" />

@@ -16,11 +16,10 @@
 
 @layer base {
   body {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-main);
-    -webkit-font-smoothing: antialiased;
-    font-family: var(--font-body);
+    @apply bg-[#0B0D14] text-white;
   }
 }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+

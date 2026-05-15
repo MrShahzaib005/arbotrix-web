@@ -39,7 +39,7 @@ export default function RobotShowcaseGrid() {
             className="group block bg-gray-900 border border-gray-800 rounded-3xl overflow-hidden hover:border-accent-blue/30 transition-colors duration-300"
           >
             {/* Image Placeholder */}
-            <div className="h-56 bg-black flex items-center justify-center relative overflow-hidden">
+            <div className="h-56 bg-[#0B0D14] flex items-center justify-center relative overflow-hidden">
               <div className="text-gray-700 font-bold tracking-widest uppercase text-xs z-10 relative">
                 [Render: {project.title}]
               </div>

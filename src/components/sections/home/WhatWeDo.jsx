@@ -23,7 +23,7 @@ export default function WhatWeDo() {
                 transition={{ duration: 0.2 }}
                 className="bg-gray-900 border border-gray-800 p-8 rounded-3xl cursor-pointer h-full flex flex-col items-start group"
               >
-                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-6 group-hover:bg-accent-blue/10 transition-colors">
+                <div className="w-12 h-12 bg-[#0B0D14] rounded-full flex items-center justify-center mb-6 group-hover:bg-accent-blue/10 transition-colors">
                   <Icon className="w-6 h-6 text-white group-hover:text-accent-blue transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-white">{area.title}</h3>
