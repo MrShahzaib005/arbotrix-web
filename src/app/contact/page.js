@@ -1,23 +1,25 @@
 import { Navbar } from "@/components/layout/Navbar";
-import ContactHero from "@/components/sections/contact/ContactHero";
-import ContactForm from "@/components/sections/contact/ContactForm";
 import ClientSatisfaction from "@/components/sections/contact/ClientSatisfaction";
+import ContactForm from "@/components/sections/contact/ContactForm"; // Adjust path if yours is different
 
 export const metadata = {
   title: "Contact | Arbotrix Robotics",
-  description: "Get in touch with the Arbotrix team.",
+  description: "Get in touch with the Arbotrix engineering team.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-black selection:bg-accent-blue selection:text-white">
+    // FIX: Locked in the global #0B0D14 slate background
+    <main className="min-h-screen bg-[#0B0D14] selection:bg-accent-blue selection:text-white">
       <Navbar />
-      <ContactHero />
-      <div className="bg-[#000000] px-6 py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <ContactForm />
-          <ClientSatisfaction />
-        </div>
+      
+      {/* Added pt-32 to clear the navbar cleanly */}
+      <div className="pt-25 pb-24 relative overflow-hidden">
+        {/* Subtle ambient glow to match the rest of the site */}
+        <div className="absolute top-0 left-1/4 w-[800px] h-[400px] bg-accent-blue/5 blur-[120px] rounded-full pointer-events-none" />
+        
+        <ContactForm />
+        {/* <ClientSatisfaction /> */}
       </div>
     </main>
   );

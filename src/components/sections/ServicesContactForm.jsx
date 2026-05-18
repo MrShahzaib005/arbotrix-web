@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 
 export default function ServicesContactForm() {
   return (
-    <section className="relative overflow-hidden border border-white/10 rounded-3xl bg-[#111111] p-12 md:p-20">
+    // FIX: Changed background to #131620, border to gray-800, added shadow-2xl for depth
+    <section className="relative overflow-hidden border border-gray-800 rounded-3xl bg-[#131620] p-12 md:p-20 shadow-2xl">
 
       {/* Decorative orbs */}
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent-blue/10 blur-[100px] rounded-full pointer-events-none" />
@@ -36,15 +37,16 @@ export default function ServicesContactForm() {
 
         {/* Right — form */}
         <form className="space-y-8">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="flex flex-col space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest text-gray-500">
                 Name
               </label>
+              {/* FIX: Changed border-white/15 to border-gray-800 */}
               <input
                 type="text"
                 placeholder="John Doe"
-                className="bg-transparent border-b border-white/15 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors text-sm"
+                className="bg-transparent border-b border-gray-800 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors text-sm"
               />
             </div>
             <div className="flex flex-col space-y-2">
@@ -54,7 +56,7 @@ export default function ServicesContactForm() {
               <input
                 type="text"
                 placeholder="Acme Corp"
-                className="bg-transparent border-b border-white/15 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors text-sm"
+                className="bg-transparent border-b border-gray-800 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors text-sm"
               />
             </div>
           </div>
@@ -66,7 +68,7 @@ export default function ServicesContactForm() {
             <textarea
               rows="3"
               placeholder="We need to automate our warehouse floor..."
-              className="bg-transparent border-b border-white/15 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors resize-none text-sm"
+              className="bg-transparent border-b border-gray-800 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors resize-none text-sm"
             />
           </div>
 
@@ -74,21 +76,21 @@ export default function ServicesContactForm() {
             <label className="text-xs font-bold uppercase tracking-widest text-gray-500">
               Budget Range
             </label>
-            <select className="bg-transparent border-b border-white/15 py-2 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none text-sm">
-              <option className="bg-[#111111] text-white">$10k – $25k</option>
-              <option className="bg-[#111111] text-white">$25k – $50k</option>
-              <option className="bg-[#111111] text-white">$50k+</option>
+            <select className="bg-transparent border-b border-gray-800 py-2 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none text-sm cursor-pointer">
+              {/* FIX: Changed dropdown options background to match the card (#131620) */}
+              <option className="bg-[#131620] text-white">$10k – $25k</option>
+              <option className="bg-[#131620] text-white">$25k – $50k</option>
+              <option className="bg-[#131620] text-white">$50k+</option>
             </select>
           </div>
 
-          <motion.button
+          {/* FIX: Upgraded button to match the premium glow style used everywhere else */}
+          <button
             type="button"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="mt-4 w-full bg-accent-blue hover:bg-blue-400 text-white font-black text-sm uppercase tracking-widest py-4 px-8 rounded-full transition-colors duration-200"
+            className="mt-4 w-full group relative flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-full shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] overflow-hidden uppercase tracking-widest text-sm"
           >
             Submit Request
-          </motion.button>
+          </button>
         </form>
       </motion.div>
     </section>

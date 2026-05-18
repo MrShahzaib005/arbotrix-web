@@ -1,22 +1,21 @@
 import { Navbar } from "@/components/layout/Navbar";
-import ProductHeroWaitlist from "@/components/sections/ProductHeroWaitlist";
-import ProductFeatures from "@/components/sections/ProductFeatures";
-import FounderNote from "@/components/sections/FounderNote";
+import ProductsHero from "@/components/sections/products/ProductsHero";
 
 export const metadata = {
-  title: "Project Tera-X | Arbotrix Robotics",
-  description: "Join the waitlist for our next-generation autonomous platform.",
+  title: "Products | Arbotrix Robotics",
+  description: "Explore the Dodo-X autonomous service vehicle and our line of industrial hardware.",
 };
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen bg-[#0B0D14] text-white selection:bg-accent-blue selection:text-white flex flex-col">
+    <main className="min-h-screen bg-[#0B0D14] selection:bg-accent-blue selection:text-white overflow-hidden">
       <Navbar />
-      <div className="pt-32 pb-24 space-y-32">
-        <ProductHeroWaitlist />
-        <ProductFeatures />
-        <FounderNote />
-      </div>
+
+      {/* The Dodo-X Hero Showcase */}
+      <ProductsHero />
+
+      {/* You can add more product feature sections below this later */}
+      
     </main>
   );
 }

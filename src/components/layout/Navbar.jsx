@@ -33,15 +33,15 @@
 //       >
 //         <div className="px-6 md:px-8 flex items-center justify-between">
           
-//           {/* Logo */}
-//           <Link
-//             href="/"
-//             className={`font-heading text-2xl font-black tracking-tighter flex items-center transition-colors duration-300 ${
-//               isScrolled ? "text-black" : "text-white"
-//             }`}
-//           >
-//             arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
-//           </Link>
+          // {/* Logo */}
+          // <Link
+          //   href="/"
+          //   className={`font-heading text-2xl font-black tracking-tighter flex items-center transition-colors duration-300 ${
+          //     isScrolled ? "text-black" : "text-white"
+          //   }`}
+          // >
+          //   arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
+          // </Link>
 
 //           {/* Desktop Links */}
 //           <div className="hidden md:flex items-center gap-8">
@@ -153,6 +153,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const NAV_LINKS = ["Products", "Services", "Careers", "Contact", "Courses"];
 
@@ -182,10 +183,22 @@ export const Navbar = () => {
       >
         <div className="px-6 md:px-8 flex items-center justify-between">
           
-          {/* Logo - Permanently White/Blue */}
+          {/* <Link href="/" className="flex items-center group">
+          <Image 
+            src="/images/logo-1.png" // Make sure this matches your filename
+            alt="Arbotrix Robotics" 
+            width={80} 
+            height={80} 
+            className="object-contain transition-transform duration-300 group-hover:opacity-80"
+            priority // Loads the logo immediately
+          />
+        </Link> */}
+        {/* Logo */}
           <Link
             href="/"
-            className="font-heading text-2xl font-black tracking-tighter flex items-center text-white"
+            className={`font-heading text-2xl font-black tracking-tighter flex items-center transition-colors duration-300 ${
+              isScrolled ? "text-black" : "text-white"
+            }`}
           >
             arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
           </Link>

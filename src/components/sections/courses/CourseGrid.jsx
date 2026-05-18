@@ -53,7 +53,8 @@ const COURSES = [
 export default function CourseGrid() {
   return (
     <section className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+      {/* FIX: Forced max 2 columns across on large screens (lg:grid-cols-2) and increased the gap */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
         {COURSES.map((course, index) => (
           <motion.div 
             key={course.id}
@@ -67,8 +68,8 @@ export default function CourseGrid() {
               <span className="sr-only">View {course.title}</span>
             </Link>
 
-            {/* THE FIX: Fixed height (h-48) instead of an aspect ratio so it never squashes */}
-            <div className="relative h-48 bg-gray-900 overflow-hidden shrink-0">
+            {/* FIX: Increased thumbnail height to h-56 to balance the new wider card aspect ratio */}
+            <div className="relative h-56 bg-gray-900 overflow-hidden shrink-0">
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,rgba(0,163,255,0.15)_0%,transparent_70%)]" />
               <div className="absolute top-4 left-4 z-20">
                 <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border backdrop-blur-md ${course.levelColor}`}>
@@ -77,27 +78,26 @@ export default function CourseGrid() {
               </div>
             </div>
 
-            {/* THE FIX: Restored the premium paddings (p-6) and text sizes */}
-            <div className="p-6 md:p-8 flex flex-col flex-grow relative z-0">
-              <h3 className="text-xl font-black text-white mb-2 leading-tight group-hover:text-accent-blue transition-colors">
+            <div className="p-8 flex flex-col flex-grow relative z-0">
+              <h3 className="text-2xl font-black text-white mb-3 leading-tight group-hover:text-accent-blue transition-colors">
                 {course.title}
               </h3>
-              <p className="text-sm text-gray-400 mb-6 flex-grow">
+              <p className="text-gray-400 mb-8 flex-grow leading-relaxed">
                 {course.tagline}
               </p>
 
               {/* Logistics */}
-              <div className="flex flex-col gap-3 mb-8">
+              <div className="flex flex-col gap-4 mb-8">
                 <div className="flex items-center text-sm text-gray-300">
-                  <Calendar className="w-4 h-4 mr-3 text-gray-500 shrink-0" />
+                  <Calendar className="w-5 h-5 mr-4 text-gray-500 shrink-0" />
                   <span className="truncate">{course.dates}</span>
                 </div>
                 <div className="flex items-center text-sm text-gray-300">
-                  <MapPin className="w-4 h-4 mr-3 text-gray-500 shrink-0" />
+                  <MapPin className="w-5 h-5 mr-4 text-gray-500 shrink-0" />
                   <span className="truncate">{course.location}</span>
                 </div>
                 <div className="flex items-center text-sm text-gray-300">
-                  <Cpu className="w-4 h-4 mr-3 text-accent-blue shrink-0" />
+                  <Cpu className="w-5 h-5 mr-4 text-accent-blue shrink-0" />
                   <span className="text-accent-blue font-medium truncate">{course.hardware}</span>
                 </div>
               </div>
@@ -107,8 +107,8 @@ export default function CourseGrid() {
                 <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
                   Early Bird
                 </span>
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white group-hover:bg-accent-blue group-hover:border-accent-blue transition-all duration-300">
-                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white group-hover:bg-accent-blue group-hover:border-accent-blue transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </div>
