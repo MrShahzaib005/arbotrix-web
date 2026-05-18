@@ -145,8 +145,7 @@
 //       </AnimatePresence>
 //     </>
 //   );
-// };
-
+// }
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -162,7 +161,6 @@ export const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // Detect scroll to trigger the density change
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -177,38 +175,29 @@ export const Navbar = () => {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-6 left-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 rounded-full ${
           isScrolled
-            ? "bg-[#131620]/90 backdrop-blur-xl border border-gray-800 shadow-[0_10px_30px_rgba(0,0,0,0.6)] py-3" // Dense frosted slate when scrolled
-            : "bg-[#1A1D27]/40 backdrop-blur-md border border-white/5 py-4 shadow-sm" // Sheer glass at rest
+            ? "bg-[#131620]/90 backdrop-blur-xl border border-gray-800 shadow-[0_10px_30px_rgba(0,0,0,0.6)] py-3"
+            : "bg-[#1A1D27]/40 backdrop-blur-md border border-white/5 py-4 shadow-sm"
         }`}
       >
         <div className="px-6 md:px-8 flex items-center justify-between">
-          
-          {/* <Link href="/" className="flex items-center group">
-          <Image 
-            src="/images/logo-1.png" // Make sure this matches your filename
-            alt="Arbotrix Robotics" 
-            width={80} 
-            height={80} 
-            className="object-contain transition-transform duration-300 group-hover:opacity-80"
-            priority // Loads the logo immediately
-          />
-        </Link> */}
-        {/* Logo */}
-          <Link
-            href="/"
-            className={`font-heading text-2xl font-black tracking-tighter flex items-center transition-colors duration-300 ${
-              isScrolled ? "text-black" : "text-white"
-            }`}
-          >
-            arb<span className="text-accent-blue text-3xl leading-none">O</span>trix
+
+          {/* Logo — image from /public/logo-1.png */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/arbotrix.png"
+              alt="Arbotrix"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain"
+              priority
+            />
           </Link>
 
-          {/* Desktop Links - Permanently Light */}
+          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => {
               const href = `/${link.toLowerCase()}`;
               const isActive = pathname === href || pathname.startsWith(href + "/");
-
               return (
                 <Link
                   key={link}
@@ -230,7 +219,7 @@ export const Navbar = () => {
             })}
           </div>
 
-          {/* Desktop CTA - Framer-Style Slide-In Button */}
+          {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <Link
               href="/contact"
@@ -243,7 +232,7 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile Toggle - Permanently White */}
+          {/* Mobile Toggle */}
           <button className="md:hidden" onClick={() => setIsMobileOpen(!isMobileOpen)}>
             {isMobileOpen ? (
               <X className="w-6 h-6 text-white" />
@@ -281,7 +270,6 @@ export const Navbar = () => {
                 );
               })}
               <div className="h-px bg-gray-800 w-full my-4" />
-              
               <Link
                 href="/contact"
                 onClick={() => setIsMobileOpen(false)}
