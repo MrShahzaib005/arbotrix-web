@@ -189,7 +189,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-gray-400" />
-                  <span>hello@arbotrix.com</span>
+                  <span>arbotrixpk@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-gray-400" />
@@ -206,7 +206,7 @@ export default function Footer() {
                 <a href="https://www.linkedin.com/company/arbotrix/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors">
                   <FaLinkedin className="w-4 h-4" />
                 </a>
-                <a href="https://www.instagram.com/arbotrix_?igsh=MWxzYzQzY25va3d0dQ==" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors">
+                <a href="https://www.instagram.com/arbotrix_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors">
                   <FaInstagram className="w-4 h-4" />
                 </a>
                 <a href="https://wa.me/923195447944" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-white rounded-full flex items-center justify-center text-black hover:bg-gray-200 transition-colors">

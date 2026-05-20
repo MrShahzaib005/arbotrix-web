@@ -7,6 +7,7 @@ import HomeProductTeaser from "@/components/sections/home/HomeProductTeaser";
 import TeamSection from "@/components/sections/home/TeamSection";
 import EcosystemOrbit from "@/components/sections/home/EcosystemOrbit";
 import PreFooterCTA from "@/components/sections/home/PreFooterCTA";
+import { HardwareShowcase } from "@/components/sections/home/HardwareShowcase";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <FeaturedProject />
       {/* <EcosystemOrbit /> */}
       {/* <HomeProductTeaser /> */}
+      <HardwareShowcase />
       <TeamSection />
       <PreFooterCTA />
     </main>

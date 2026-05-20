@@ -1,10 +1,32 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { submitContactLead } from "@/app/actions/contact"; 
 
 export default function ContactForm() {
+  const [isPending, setIsPending] = useState(false);
+  const [status, setStatus] = useState(null); 
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setIsPending(true);
+    setStatus(null);
+    
+    const formData = new FormData(e.target);
+    const result = await submitContactLead(formData);
+    
+    if (result?.error) {
+      setStatus({ type: "error", message: result.error });
+    } else {
+      setStatus({ type: "success", message: "Signal received. We will contact you shortly." });
+      e.target.reset(); 
+    }
+    
+    setIsPending(false); 
+  }
+
   return (
-    // FIX: Reduced gap from gap-16 to gap-10 lg:gap-12
     <section className="max-w-7xl w-full mx-auto pt-10 px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 relative z-10">
       
       {/* LEFT SIDE: Form */}
@@ -12,54 +34,75 @@ export default function ContactForm() {
         <p className="font-mono text-accent-blue text-[10px] uppercase tracking-[0.2em] font-bold mb-3">
           [ SEND A MESSAGE ]
         </p>
-        {/* FIX: Scaled down massive heading slightly */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white uppercase leading-tight mb-8">
           Talk to us.
         </h1>
         
-        {/* FIX: Compressed gaps across the form */}
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          
+          {/* Status Message Display */}
+          {status && (
+            <div className={`p-4 rounded-xl border flex items-center gap-3 text-sm font-bold ${
+              status.type === "success" 
+                ? "bg-green-500/10 border-green-500/30 text-green-400" 
+                : "bg-red-500/10 border-red-500/30 text-red-400"
+            }`}>
+              {status.type === "success" ? <CheckCircle className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
+              <p>{status.message}</p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">First Name</label>
-              <input type="text" placeholder="Zaid" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+              <input type="text" name="firstName" required placeholder="Zaid" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Last Name</label>
-              <input type="text" placeholder="Akhtar" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+              <input type="text" name="lastName" required placeholder="Akhtar" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
             </div>
           </div>
           
           <div className="flex flex-col gap-1.5">
             <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Email</label>
-            <input type="email" placeholder="you@example.com" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+            <input type="email" name="email" required placeholder="you@example.com" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
           </div>
           
           <div className="flex flex-col gap-1.5">
             <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Subject</label>
-            <select className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none cursor-pointer text-sm">
-              <option className="bg-[#131620] text-gray-400">Select a topic</option>
-              <option className="bg-[#131620] text-white">Custom Hardware</option>
-              <option className="bg-[#131620] text-white">Academy Courses</option>
-              <option className="bg-[#131620] text-white">Careers</option>
+            <select name="type" required defaultValue="" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none cursor-pointer text-sm">
+              <option value="" disabled className="bg-[#131620] text-gray-400">Select a topic</option>
+              <option value="ENTERPRISE_PROJECT" className="bg-[#131620] text-white">Hire Arbotrix (Enterprise/Custom IoT)</option>
+              <option value="HARDWARE_SALES" className="bg-[#131620] text-white">Hardware Inquiry (Drones, UGVs)</option>
+              <option value="COURSE_TRAINING" className="bg-[#131620] text-white">Academy Courses & Training</option>
+              <option value="CAREERS" className="bg-[#131620] text-white">Careers & Internships</option>
+              <option value="GENERAL" className="bg-[#131620] text-white">General Inquiry</option>
             </select>
           </div>
           
           <div className="flex flex-col gap-1.5">
             <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Message</label>
-            {/* FIX: Reduced textarea from 5 rows to 3 rows to save height */}
-            <textarea rows="3" placeholder="Tell us about your project..." className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors resize-none text-sm"></textarea>
+            <textarea name="message" required rows="3" placeholder="Tell us about your project..." className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors resize-none text-sm"></textarea>
           </div>
           
-          <button type="button" className="mt-2 w-full group relative flex items-center justify-center gap-3 px-8 py-3.5 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] overflow-hidden uppercase tracking-widest text-sm">
-            Send Message
-            <Send className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          <button 
+            type="submit" 
+            disabled={isPending}
+            className="mt-2 w-full group relative flex items-center justify-center gap-3 px-8 py-3.5 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden uppercase tracking-widest text-sm"
+          >
+            {isPending ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <>
+                Send Message
+                <Send className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </>
+            )}
           </button>
         </form>
       </div>
 
       {/* RIGHT SIDE: Stats Card */}
-      {/* FIX: Used my-auto to perfectly vertically center the card, reduced padding */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -75,7 +118,6 @@ export default function ContactForm() {
           Numbers backed by real client and student feedback.
         </p>
 
-        {/* FIX: Tighter gap for the stats lines */}
         <div className="flex flex-col gap-4 flex-grow">
           {[
             { label: "Client Satisfaction", value: "97%" },
@@ -89,7 +131,6 @@ export default function ContactForm() {
                 <span>{stat.label}</span>
                 <span className="text-accent-blue">{stat.value}</span>
               </div>
-              {/* FIX: Thinner progress bar (h-1 instead of h-1.5) */}
               <div className="w-full h-1 bg-[#0B0D14] rounded-full overflow-hidden border border-gray-800/50">
                 <motion.div 
                   initial={{ width: 0 }}

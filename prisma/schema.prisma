@@ -1,13 +1,94 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+// --- ENUMS ---
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum EnrollmentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum InquiryType {
+  ENTERPRISE_PROJECT
+  COURSE_TRAINING
+  HARDWARE_SALES
+  CAREERS
+  GENERAL
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+// --- MODELS ---
+
+model User {
+  id          String       @id
+  email       String       @unique
+  firstName   String?
+  lastName    String?
+  role        Role         @default(STUDENT)
+  createdAt   DateTime     @default(now())
+  enrollments Enrollment[]
+}
+
+model Course {
+  id          String      @id @default(uuid())
+  slug        String      @unique // e.g., "ros2-fundamentals"
+  title       String
+  description String
+  price       Int
+  level       CourseLevel @default(BEGINNER)
+  isActive    Boolean     @default(true)
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id                String           @id @default(uuid())
+  userId            String
+  courseId          String
+  whatsappNumber    String
+  paymentMethod     String
+  senderAccountName String
+  transactionId     String
+  screenshotUrl     String
+  status            EnrollmentStatus @default(PENDING)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  verifiedAt        DateTime?
+
+  // Relationships
+  course            Course           @relation(fields: [courseId], references: [id])
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model ContactLead {
+  id        String      @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String
+  type      InquiryType
+  message   String      @db.Text
+  isRead    Boolean     @default(false)
+  createdAt DateTime    @default(now())
+}
+
+model AdminDirectory {
+  id      String   @id @default(uuid())
+  email   String   @unique
+  addedAt DateTime @default(now())
 }
