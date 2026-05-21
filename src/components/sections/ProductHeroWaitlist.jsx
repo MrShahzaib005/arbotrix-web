@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Crosshair, Terminal } from "lucide-react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function ProductsHero() {
   // Simple glitch effect for the terminal text
@@ -56,7 +57,9 @@ export default function ProductsHero() {
             className="flex items-center gap-6"
           >
             <button className="group relative flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-full shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] overflow-hidden">
-              <span className="transition-transform duration-300 group-hover:-translate-x-3">Reserve Dodo-X</span>
+              <Link href="/contact" className="...keep all existing classes...">
+  Reserve Dodo-X
+</Link>
               <ArrowRight className="absolute right-5 w-5 h-5 opacity-0 transition-all duration-300 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0" />
             </button>
           </motion.div>

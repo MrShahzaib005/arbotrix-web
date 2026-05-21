@@ -104,4 +104,4 @@ export default async function IndividualCoursePage({ params }) {
       <CourseDetailClient course={course} />
     </main>
   );
-}
+}  
