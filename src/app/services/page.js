@@ -8,6 +8,7 @@ import ServicesContactForm from "@/components/sections/ServicesContactForm";
 
 // You can keep the PreFooterCTA or remove it if ServicesContactForm does the job
 import PreFooterCTA from "@/components/sections/home/PreFooterCTA"; 
+import ContactForm from "@/components/sections/contact/ContactForm";
 
 export const metadata = {
   title: "Services | Arbotrix Robotics",
@@ -26,7 +27,10 @@ export default function ServicesPage() {
       <div className="pb-24 max-w-7xl mx-auto px-6 flex flex-col gap-24 mt-12">
         <ServiceCards />
         <ProcessTimeline />
-        <ServicesContactForm />
+        {/* 3. Your Connected Contact Form */}
+        <div className="pt-12 border-t border-gray-800/50">
+          <ContactForm />
+        </div>
       </div>
 
       {/* 3. The Exit Intent (Optional, can remove if Contact Form is enough) */}

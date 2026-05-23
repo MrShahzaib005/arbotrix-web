@@ -1,9 +1,9 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import { ShieldCheck, LogOut } from 'lucide-react'
+import { ShieldCheck, LogOut, User as UserIcon } from 'lucide-react'
 import { logout } from '@/app/actions/auth'
 import { Navbar } from '@/components/layout/Navbar'
-import prisma from '@/utils/prisma' // 1. Added missing import
+import prisma from '@/utils/prisma'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -14,12 +14,25 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
-  const user = data.user // 2. Define user so we can use user.id
+  const user = data.user 
 
-  // 2. Fetch Enrollments
+  // FIX 1: Fetch the actual profile from your database for the real name
+  const dbUser = await prisma.user.findUnique({
+    where: { id: user.id }
+  })
+
+  // Format the name safely
+  const operatorName = dbUser?.firstName 
+    ? `${dbUser.firstName} ${dbUser.lastName || ""}` 
+    : "Classified Operator"
+
+  // FIX 2: Fetch Enrollments AND include the related Course data
   const enrollments = await prisma.enrollment.findMany({
     where: { userId: user.id },
-    orderBy: { createdAt: 'desc' }
+    orderBy: { createdAt: 'desc' },
+    include: {
+      course: true // <-- THIS IS THE MAGIC BULLET
+    }
   })
 
   return (
@@ -46,14 +59,24 @@ export default async function DashboardPage() {
               <ShieldCheck className="w-6 h-6 text-accent-blue" />
               <h2 className="text-sm font-black text-white uppercase tracking-widest">Operator Identity</h2>
             </div>
-            <div className="flex flex-col gap-4">
+            
+            <div className="flex flex-col gap-5">
+              {/* Added Real Name Display */}
+              <div>
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+                  <UserIcon className="w-3 h-3" /> Callsign
+                </label>
+                <p className="text-white text-base font-bold mt-1 uppercase tracking-wide">{operatorName}</p>
+              </div>
+
               <div>
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Network ID</label>
-                <p className="text-white text-sm font-medium mt-1">{user.email}</p>
+                <p className="text-gray-300 text-sm font-medium mt-1">{user.email}</p>
               </div>
+              
               <div>
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">System UUID</label>
-                <p className="text-gray-400 text-xs font-mono mt-1 break-all">{user.id}</p>
+                <p className="text-gray-500 text-xs font-mono mt-1 break-all">{user.id}</p>
               </div>
             </div>
           </div>
@@ -62,13 +85,22 @@ export default async function DashboardPage() {
           <div className="lg:col-span-2 space-y-4">
             {enrollments.length > 0 ? (
               enrollments.map((enr) => (
-                <div key={enr.id} className="bg-[#131620] p-6 rounded-2xl border border-gray-800 flex justify-between items-center shadow-lg">
+                <div key={enr.id} className="bg-[#131620] p-6 rounded-2xl border border-gray-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-lg transition-colors hover:border-gray-600">
                   <div>
-                    <h3 className="text-white font-black uppercase tracking-wider">{enr.courseId.replace('-', ' ')}</h3>
-                    <p className="text-xs text-gray-500 mt-1">Submitted: {new Date(enr.createdAt).toLocaleDateString()}</p>
+                    {/* UI UPDATE: We now access the joined Course title! */}
+                    <h3 className="text-white font-black uppercase tracking-wider text-lg">
+                      {enr.course.title} 
+                    </h3>
+                    <div className="flex items-center gap-3 mt-1.5">
+                      <p className="text-xs text-gray-500 font-mono">Mission ID: {enr.id.split('-')[0]}</p>
+                      <span className="text-gray-700">•</span>
+                      <p className="text-xs text-gray-500">Submitted: {new Date(enr.createdAt).toLocaleDateString()}</p>
+                    </div>
                   </div>
-                  <div className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest ${
-                    enr.status === 'PENDING' ? 'bg-amber-500/10 text-amber-500' : 'bg-emerald-500/10 text-emerald-500'
+                  <div className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest border ${
+                    enr.status === 'PENDING' ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' : 
+                    enr.status === 'APPROVED' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+                    'bg-red-500/10 text-red-400 border-red-500/20'
                   }`}>
                     {enr.status}
                   </div>

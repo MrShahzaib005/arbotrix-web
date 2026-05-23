@@ -12,7 +12,7 @@ export async function submitEnrollment(formData) {
     return { error: "Unauthorized. Please log in." };
   }
 
-  // 2. Sync User
+  // 2. Sync User (Safety net in case auth profile didn't sync)
   await prisma.user.upsert({
     where: { id: user.id },
     update: {}, 
@@ -22,17 +22,17 @@ export async function submitEnrollment(formData) {
     },
   });
 
-  // 3. Resolve the Course UUID from the slug
-  const courseSlug = formData.get('courseId');
+  // 3. Extract the ID and verify the course
+  const courseId = formData.get('courseId');
   const dbCourse = await prisma.course.findUnique({
-    where: { slug: courseSlug }
+    where: { id: courseId } // FIXED: Searching by the actual ID, not the slug
   });
 
   if (!dbCourse) {
     return { error: "Course not found." };
   }
 
-  // 4. Extract Data
+  // 4. Extract Form Data
   const whatsappNumber = formData.get('whatsappNumber');
   const paymentMethod = formData.get('paymentMethod');
   const senderAccountName = formData.get('senderAccountName');
@@ -54,18 +54,18 @@ export async function submitEnrollment(formData) {
 
     if (uploadError) {
       console.error("Upload error:", uploadError);
-      return { error: "Failed to upload screenshot." };
+      return { error: "Failed to upload screenshot. Please try again." };
     }
 
     const { data: { publicUrl } } = supabase.storage
       .from('payment-screenshots')
       .getPublicUrl(fileName);
 
-    // 6. Create Enrollment using the actual UUID
+    // 6. Create Enrollment
     await prisma.enrollment.create({
       data: {
         userId: user.id,
-        courseId: dbCourse.id, // Using the verified UUID
+        courseId: dbCourse.id, 
         whatsappNumber,
         paymentMethod,
         senderAccountName,

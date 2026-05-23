@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import prisma from '@/utils/prisma'
 import AdminClient from './AdminClient'
+import { Navbar } from '@/components/layout/Navbar' // 1. Added Navbar
 
 export default async function AdminDashboard() {
   const supabase = await createClient()
@@ -11,7 +12,7 @@ export default async function AdminDashboard() {
     redirect('/login')
   }
 
-  // 1. Verify Admin Clearance
+  // Verify Admin Clearance
   const isAdmin = await prisma.adminDirectory.findUnique({
     where: { email: user.email }
   })
@@ -21,27 +22,45 @@ export default async function AdminDashboard() {
     redirect('/') 
   }
 
-  // 2. Fetch REAL Data from your database
+  // Fetch Contact Leads
   const leads = await prisma.contactLead.findMany({
     orderBy: { createdAt: 'desc' }
   })
 
+  // FIX 1: Fetch Enrollments AND include BOTH the User and the Course
   const enrollments = await prisma.enrollment.findMany({
-    include: { user: true }, // Include student details
+    include: { 
+      user: true,
+      course: true // This fixes the UUID trap!
+    }, 
     orderBy: { createdAt: 'desc' }
   })
 
-  // 3. Format and Combine Data
+  // FIX 2: Fetch Active Students for the Promotion/Graduation tab
+  const students = await prisma.user.findMany({
+    orderBy: { createdAt: 'desc' }
+  })
+
+  // Format and Combine Data for the Client
   const rawData = [
     ...leads.map(lead => ({ ...lead, dataType: 'LEAD' })), 
     ...enrollments.map(enr => ({ 
       ...enr, 
       dataType: 'ENROLLMENT',
-      // Map these fields to match your AdminClient.jsx expectations
-      senderAccountName: enr.senderAccountName,
-      status: enr.status 
+      // Map these clean strings so your AdminClient doesn't have to dig for them
+      courseTitle: enr.course.title, 
+      realUserName: enr.user.firstName ? `${enr.user.firstName} ${enr.user.lastName || ''}` : enr.user.email
     }))
   ]
 
-  return <AdminClient initialData={rawData} />
+  return (
+    <main className="min-h-screen bg-[#0B0D14] pb-24">
+      <Navbar />
+      
+      <div className="pt-28">
+        {/* Pass rawData and the new students array down to your interactive client */}
+        <AdminClient initialData={rawData} students={students} />
+      </div>
+    </main>
+  )
 }

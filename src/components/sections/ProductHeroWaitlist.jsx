@@ -21,11 +21,9 @@ export default function ProductsHero() {
       
       {/* Subtle Ambient Glow behind the text */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-full max-w-2xl h-[400px] bg-accent-blue/5 blur-[120px] rounded-full pointer-events-none" />
-
-      {/* Engineering Grid (Subtle) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#131620_1px,transparent_1px),linear-gradient(to_bottom,#131620_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-     <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 h-full lg:-mt-16">
-        {/* LEFT SIDE: Typography & CTA */}
+      
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 h-full lg:-mt-16">
+        {/* LEFT SIDE: Typography & CTA (Untouched so it doesn't lower) */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center z-20 mt-10 lg:mt-0 text-center lg:text-left items-center lg:items-start">
           
           <motion.div 
@@ -57,61 +55,51 @@ export default function ProductsHero() {
             className="flex items-center gap-6"
           >
             <button className="group relative flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-full shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] overflow-hidden">
-              <Link href="/contact" className="...keep all existing classes...">
-  Reserve Dodo-X
-</Link>
+              <Link href="/contact" className="relative z-10">
+                Reserve Dodo-X
+              </Link>
               <ArrowRight className="absolute right-5 w-5 h-5 opacity-0 transition-all duration-300 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0" />
             </button>
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE: The Stealth HUD Asset (Curiosity Generator) */}
+        {/* RIGHT SIDE: The Stealth HUD Asset */}
         <motion.div 
           initial={{ opacity: 0, x: 150 }} 
           animate={{ opacity: 1, x: 0 }} 
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="w-full lg:w-1/2 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 flex justify-center lg:justify-end z-10 relative group"
+          // FIX 1: Changed lg:top-1/2 to lg:top-[58%] to push ONLY the image down away from the navbar
+          className="w-full lg:w-1/2 lg:absolute lg:right-0 lg:top-[58%] lg:-translate-y-1/2 flex justify-center lg:justify-end z-10 relative group pt-10 lg:pt-0"
         >
-          {/* HUD Container */}
-          <div className="relative w-full max-w-[400px] lg:max-w-[550px] xl:max-w-[650px] flex justify-center aspect-[3/4] items-center">
+          {/* HUD Container - FIX 2: Added bg-white and rounded-[3rem] to mask the jpeg's square corners */}
+          <div className="relative w-full max-w-[400px] lg:max-w-[480px] xl:max-w-[550px] flex justify-center aspect-[4/5] items-center bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-white/5">
             
-            {/* 1. The Silhouette: Deeply crushed brightness so the robot is just a dark ghost */}
+            {/* 1. The Robot: White background seamlessly merges with the wrapper */}
             <img 
-              src="/images/dodo-front.png" 
-              alt="Arbotrix Dodo-X Classified" 
-              className="w-full object-contain brightness-[0.1] contrast-[1.5] saturate-0 opacity-80 relative z-10 pointer-events-none"
+              src="/images/featured-vacuum.jpeg" 
+              alt="Arbotrix Dodo-X" 
+              className="absolute inset-0 w-full h-full object-contain p-6 relative z-10 pointer-events-none"
             />
 
-            {/* 2. The Animated Scanline: Sweeps up and down the silhouette */}
+            {/* 2. The Animated Scanline: Sweeps up and down the robot */}
             <motion.div 
               animate={{ top: ["0%", "100%", "0%"] }}
               transition={{ duration: 4, ease: "linear", repeat: Infinity }}
               className="absolute left-0 w-full h-[2px] bg-accent-blue/50 shadow-[0_0_15px_rgba(0,163,255,0.8)] z-20 pointer-events-none"
             />
 
-            {/* 3. The Tech Grid Overlay: Gives it that digital schematic feel */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,163,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,163,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] z-20 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]" />
-
-            {/* 4. Focused Glows: Only the eyes and the base show life */}
-            <motion.div 
-              animate={{ opacity: [0.4, 0.8, 0.4] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute top-[18%] left-1/2 -translate-x-1/2 w-20 h-20 bg-red-500/40 blur-[40px] z-30 mix-blend-screen" 
-            />
-            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-56 h-8 bg-accent-blue/60 blur-[30px] z-30 mix-blend-screen" />
-
-            {/* 5. Floating Terminal Data: Random tech UI to build the "Classified" vibe */}
-            <div className="absolute top-[10%] right-[10%] z-40 flex flex-col gap-1 items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-blue">
+            {/* 3. Floating Terminal Data: Random tech UI to build the vibe */}
+            <div className="absolute top-[10%] right-[10%] z-40 flex flex-col gap-1 items-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/80 p-2 rounded-lg backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-[10px] font-mono text-accent-blue font-bold">
                 <Terminal className="w-3 h-3" /> [ LIVE FEED ]
               </div>
-              <div className="text-[9px] font-mono text-gray-500 uppercase tracking-widest">
+              <div className="text-[9px] font-mono text-gray-500 uppercase tracking-widest font-bold">
                 ID: ARB-X99-2
               </div>
             </div>
 
-            <div className="absolute bottom-[20%] left-[5%] z-40 bg-black/40 backdrop-blur-md border border-white/5 px-3 py-1.5 rounded text-[10px] font-mono text-gray-400 opacity-70">
-              STATUS: <span className="text-emerald-400 animate-pulse">{glitchText}</span>
+            <div className="absolute bottom-[8%] left-[8%] z-40 bg-black/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg text-[10px] font-mono text-gray-300 shadow-xl">
+              STATUS: <span className="text-emerald-400 font-bold animate-pulse">{glitchText}</span>
             </div>
 
           </div>

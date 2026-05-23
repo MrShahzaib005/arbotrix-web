@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 
 export default function HomeProductTeaser() {
   const [email, setEmail] = useState("");
-  const [mounted, setMounted] = useState(false); // 1. Add mounted state
+  const [mounted, setMounted] = useState(false);
 
-  // 2. Set mounted to true only after client hydration
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -15,32 +14,36 @@ export default function HomeProductTeaser() {
     e.preventDefault();
     console.log("Teaser Lead:", email);
   };
+
   return (
     <section className="relative w-full bg-[#0B0D14] py-24 overflow-hidden border-t border-gray-900">
-      {/* Background Code-Only Circuit/Particle Effect */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-accent-blue rounded-full"
-            style={{
-              width: Math.random() * 4 + 1 + "px",
-              height: Math.random() * 4 + 1 + "px",
-              top: Math.random() * 100 + "%",
-              left: Math.random() * 100 + "%",
-            }}
-            animate={{
-              y: [0, Math.random() * -100 - 50],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+      
+      {/* THE FIX: Only render the random particles AFTER client hydration */}
+      {mounted && (
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute bg-accent-blue rounded-full"
+              style={{
+                width: Math.random() * 4 + 1 + "px",
+                height: Math.random() * 4 + 1 + "px",
+                top: Math.random() * 100 + "%",
+                left: Math.random() * 100 + "%",
+              }}
+              animate={{
+                y: [0, Math.random() * -100 - 50],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <h2 className="text-xs font-bold text-gray-500 uppercase tracking-[0.3em] mb-4">Something is coming</h2>

@@ -12,11 +12,11 @@ export default function FounderNote() {
       >
         <h2 className="text-2xl font-bold mb-6">Why we are building this.</h2>
         <p className="text-gray-400 text-lg italic leading-relaxed mb-8">
-          "We saw brilliant hardware crippled by terrible software, and brilliant software trapped in fragile hardware. Tera-X is our answer. We aren't just building a robot; we are engineering a reliable, autonomous workforce. Thank you for joining us on this journey."
+          ""At Arbotrix, I am building DoDo Bot to make advanced, autonomous robotics accessible and practical for the hospitality industry. My goal is to bridge the gap between expensive, imported technology and local business needs by engineering a smart, reliable service solution. I want to prove that cutting-edge AI and robotics can be developed locally to solve real-world operational challenges efficiently. Ultimately, DoDo Bot is our foundational step toward a broader vision of revolutionizing commercial automation and advancing into humanoid robotics.""
         </p>
         <div>
-          <h4 className="font-bold text-white tracking-widest uppercase">Shahzaib</h4>
-          <p className="text-sm text-accent-blue">Lead Engineer, Arbotrix</p>
+          <h4 className="font-bold text-white tracking-widest uppercase">AQIL KHAN</h4>
+          <p className="text-sm text-accent-blue">CEO - Arbotrix</p>
         </div>
       </motion.div>
     </section>

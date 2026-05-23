@@ -42,16 +42,26 @@ model User {
   role        Role         @default(STUDENT)
   createdAt   DateTime     @default(now())
   enrollments Enrollment[]
+  clearanceLevel Int @default(1) // 1 = Beginner, 2 = Intermediate, 3 = Advanced
 }
 
 model Course {
   id          String      @id @default(uuid())
-  slug        String      @unique // e.g., "ros2-fundamentals"
+  slug        String      @unique
   title       String
-  description String
+  description String      
   price       Int
   level       CourseLevel @default(BEGINNER)
   isActive    Boolean     @default(true)
+  
+  // --- THE CRITICAL DETAIL COLUMNS ---
+  duration    String?     @default("6 Weeks")
+  location    String?     @default("Arbotrix HQ Labs, H-13")
+  hardware    String?
+  tagline     String?
+  about       String?     @db.Text
+  outcomes    String[]    
+  
   enrollments Enrollment[]
 }
 

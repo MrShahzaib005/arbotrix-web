@@ -7,7 +7,7 @@ import { Menu, X, ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
 import Image from "next/image";
 import { logout } from "@/app/actions/auth";
 
-const NAV_LINKS = ["Products", "Services", "Careers", "Contact", "Courses"];
+const NAV_LINKS = ["Products", "Services",/* "Careers"*/, "Contact", "Courses"];
 
 export const NavbarClient = ({ user }) => {
   const [isScrolled, setIsScrolled] = useState(false);

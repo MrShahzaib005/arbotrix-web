@@ -1,78 +1,95 @@
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, ShieldCheck, Box } from 'lucide-react'
-import EnrollFormClient from './EnrollFormClient'
+import { notFound, redirect } from "next/navigation";
+import prisma from "@/utils/prisma";
+import EnrollFormClient from "./EnrollFormClient"; 
+import { ShieldCheck, Package, ArrowLeft } from "lucide-react";
+import { Navbar } from "@/components/layout/Navbar"; 
+import Link from "next/link"; 
+
+// IMPORT YOUR AUTH FUNCTION HERE
+// import { getSession } from "@/utils/auth"; 
 
 export default async function EnrollPage({ params }) {
-  const resolvedParams = await params
-  const courseId = resolvedParams.id
+  const resolvedParams = await params;
 
-  // Format the courseId from the URL into a readable title (e.g., 'ros2-fundamentals' -> 'Ros2 Fundamentals')
-  const formattedCourseTitle = courseId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  // 1. Fetch the course
+  const course = await prisma.course.findUnique({
+    where: { id: resolvedParams.id },
+    select: { id: true, title: true, price: true } 
+  });
 
-  const supabase = await createClient()
-  const { data, error } = await supabase.auth.getUser()
+  if (!course) notFound();
 
-  if (error || !data?.user) {
-    redirect(`/login?redirectTo=/courses/${courseId}/enroll`)
-  }
+  // ==========================================
+  // 2. THE AUTH & USER FETCHING LOGIC
+  // ==========================================
+  
+  // A. Get the logged-in user's session
+  // const session = await getSession();
+  // if (!session) redirect(`/login?next=/courses/${course.id}/enroll`);
+  
+  // B. Query the Prisma database for this specific user to get their name
+  /* const dbUser = await prisma.user.findUnique({
+    where: { email: session.email } // Or filter by session.id depending on your auth setup
+  });
+  */
+
+  // C. Determine the display name (Fallback to email if names are null)
+  // const operatorName = dbUser?.firstName 
+  //   ? `${dbUser.firstName} ${dbUser.lastName || ""}` 
+  //   : session.email;
+
+  // ⚠️ TEMPORARY MOCK DATA (Until you uncomment the auth logic above)
+  const operatorName = "Syed Mirza Shahzaib"; 
 
   return (
-    <main className="min-h-[100svh] bg-[#0B0D14] p-6 md:p-12 relative overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#131620_1px,transparent_1px),linear-gradient(to_bottom,#131620_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-30 pointer-events-none" />
+    <main className="min-h-[100svh] bg-[#0B0D14] text-white selection:bg-accent-blue pb-24">
+      <Navbar />
 
-      <div className="w-full max-w-2xl relative z-10">
-        
-        <Link href={`/courses/${courseId}`} className="inline-flex items-center gap-2 text-gray-500 hover:text-white text-sm font-bold transition-colors mb-8">
-          <ArrowLeft className="w-4 h-4" /> Cancel & Return
+      <div className="pt-28 max-w-2xl mx-auto px-6">
+        <Link 
+          href={`/courses/${course.id}`} 
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-white text-sm font-bold transition-colors mb-10"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to Course Details
         </Link>
 
-        <div className="bg-[#131620] border border-accent-blue/30 rounded-[2rem] p-8 md:p-12 shadow-[0_0_50px_rgba(0,163,255,0.05)]">
-          
-          <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-800">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="w-8 h-8 text-accent-blue" />
-              <div>
-                <h1 className="text-xl font-black text-white uppercase tracking-widest">Secure Enrollment</h1>
-                <p className="text-gray-400 text-xs">Operator: {data.user.email}</p>
-              </div>
-            </div>
+        {/* Header section */}
+        <div className="flex items-center gap-3 mb-8">
+          <ShieldCheck className="w-8 h-8 text-accent-blue" />
+          <div>
+            <h1 className="text-2xl font-black uppercase tracking-tight text-white">Secure Enrollment</h1>
+            
+            {/* THE FIX: Injecting the dynamic operator name */}
+            <p className="text-gray-500 text-sm">Operator: <span className="text-white font-medium">{operatorName}</span></p>
+            
           </div>
+        </div>
 
-          {/* --- NEW: THE ORDER SUMMARY --- */}
-          <div className="mb-6 flex items-center justify-between bg-[#0B0D14] border border-gray-800 p-5 rounded-xl">
+        <div className="bg-[#131620] border border-gray-800 rounded-3xl p-8 shadow-2xl">
+          
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 p-4 bg-[#0B0D14] rounded-2xl border border-gray-800/50">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-accent-blue/10 rounded-lg">
-                <Box className="w-6 h-6 text-accent-blue" />
+              <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center border border-accent-blue/20">
+                <Package className="w-6 h-6 text-accent-blue" />
               </div>
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">Target Course</p>
-                <h2 className="text-lg font-bold text-white">{formattedCourseTitle}</h2>
+                <h2 className="text-lg font-bold text-white">{course.title}</h2>
               </div>
             </div>
-            <div className="text-right">
+            
+            <div className="sm:text-right">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1">Total Fee</p>
-              <p className="text-xl font-black text-emerald-400">1000 PKR</p>
+              <h2 className="text-xl font-black text-emerald-400">{course.price} PKR</h2>
             </div>
           </div>
 
-          <div className="mb-8 p-5 bg-blue-500/10 border border-blue-500/20 rounded-xl">
-            <h3 className="text-accent-blue font-bold mb-2">Payment Instructions</h3>
-            <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-              Please transfer <strong className="text-white">1000 PKR</strong> to the following account to secure your seat.
-            </p>
-            <div className="bg-[#0B0D14] p-4 rounded-lg font-mono text-sm text-gray-400">
-              <p>Bank: <span className="text-white">Meezan Bank</span></p>
-              <p>Title: <span className="text-white">Arbotrix Robotics</span></p>
-              <p>Account: <span className="text-white text-base">012345678910</span></p>
-            </div>
-          </div>
+          <div className="w-full h-px bg-gray-800 mb-8" />
 
-          <EnrollFormClient courseId={courseId} />
-
+          <EnrollFormClient courseId={course.id} />
+          
         </div>
       </div>
     </main>
-  )
+  );
 }

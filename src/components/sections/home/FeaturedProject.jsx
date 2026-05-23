@@ -2,127 +2,106 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+// Remove DodoXClient import if you aren't using it directly in this file
 
-const PROJECTS = [
-  {
-    id: 1,
-    category: "Flagship Platform",
-    title: "DodoX",
-    desc: "Our official versatile robotic architecture designed for complex, multi-agent environments and advanced computational tasks.",
-    img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
-    offset: "",
-    link: "/projects/dodo-x",
-  },
-  {
-    id: 2,
-    category: "Heavy Logistics",
-    title: "Tera-X",
-    desc: "Heavy-duty quadrupedal weight-carrying robot built to handle extreme terrains and industrial-grade payload transport.",
-    img: "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?q=80&w=800&auto=format&fit=crop",
-    offset: "md:mt-16",
-    link: null,
-  },
-  {
-    id: 3,
-    category: "Consumer Robotics",
-    title: "Cleaning Robot",
-    desc: "Autonomous navigation system powered by Raspberry Pi 5, RPLidar, and ROS2 Humble for high-precision floor type detection.",
-    img: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=800&auto=format&fit=crop",
-    offset: "",
-    link: null,
-  },
-  {
-    id: 4,
-    category: "Aerial Systems",
-    title: "Recon Drone",
-    desc: "High-speed autonomous UAV tailored for spatial mapping, surveillance, and automated facility inspections.",
-    img: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop",
-    offset: "md:mt-16",
-    link: null,
-  },
-];
+export default function FeaturedProject() {
+  const [isFlipped, setIsFlipped] = useState(false);
 
-export const FeaturedProject = () => {
   return (
-    <section id="projects" className="bg-[#081236] py-32 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
-
-        {/* Left — sticky */}
+    <section className="bg-[#0B0D14] py-32 px-6 max-w-7xl mx-auto border-t border-gray-900">
+      <div className="flex flex-col md:flex-row gap-16 items-center">
+        
+        {/* Left Side: 3D Flip Container */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="w-full lg:w-[40%] lg:sticky lg:top-32 flex flex-col items-start"
+          viewport={{ once: true }}
+          className="w-full md:w-1/2 h-[400px] lg:h-[480px] relative cursor-pointer group"
+          style={{ perspective: 1000 }} 
+          onClick={() => setIsFlipped(!isFlipped)}
         >
-          <div className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] mb-4 font-bold">
-            [ Featured Insights ]
-          </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-black text-white leading-[1.1] mb-4">
-            Stories of our innovations across{" "}
-            <span className="text-accent-blue">Robotics and Automation</span>
-          </h2>
-          <p className="text-gray-400 text-xl mb-8">From Concept to Completion.</p>
-
-          {/* Blue accent line */}
-          <div className="w-12 h-0.5 bg-accent-blue rounded-full mb-8" />
-
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 bg-accent-blue hover:bg-blue-400 text-white font-black text-sm uppercase tracking-widest px-8 py-3.5 rounded-full transition-colors duration-200"
+          {/* Rotating Wrapper */}
+          <motion.div
+            className="w-full h-full relative rounded-3xl shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+            animate={{ rotateY: isFlipped ? 180 : 0 }}
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            style={{ transformStyle: "preserve-3d" }}
           >
-            Explore More <ArrowRight className="w-4 h-4" />
-          </Link>
+            {/* Front Face */}
+            <div
+              className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden border border-gray-200 bg-white" // CHANGED to bg-white
+              style={{ backfaceVisibility: "hidden" }}
+            >
+              <img
+                src="/images/featured-vacuum.jpeg" // Make sure this path is correct
+                alt="Autonomous Vacuum Front"
+                className="w-full h-full object-contain p-6"
+              />
+              {/* UI Hint */}
+              <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/10 flex items-center gap-2 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse" />{" "}
+                Click to flip
+              </div>
+            </div>
+
+            {/* Back Face */}
+            <div
+              className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden border border-gray-200 bg-white" // CHANGED to bg-white
+              style={{
+                backfaceVisibility: "hidden",
+                transform: "rotateY(180deg)", 
+              }}
+            >
+              <img
+                src="/images/dodo-back.jpeg" // Make sure this path is correct
+                alt="Autonomous Vacuum Back"
+                className="w-full h-full object-contain p-6"
+              />
+              {/* UI Hint */}
+              <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/10 flex items-center gap-2 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse" />{" "}
+                Flip back
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* Right — staggered grid */}
-        <div className="w-full lg:w-[60%] grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-          {PROJECTS.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-              className={`group relative h-[380px] rounded-2xl overflow-hidden border border-white/5 hover:border-accent-blue/40 shadow-md hover:shadow-xl hover:shadow-accent-blue/10 transition-all duration-500 ${project.offset}`}
-            >
-              {/* Background Image */}
-              <img
-                src={project.img}
-                alt={project.title}
-                className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-              />
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/10" />
-
-              {/* Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <span className="font-mono text-[11px] text-accent-blue uppercase tracking-widest font-bold mb-2 block">
-                  {project.category}
-                </span>
-                <h3 className="font-heading text-2xl font-bold text-white mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 mb-4">
-                  {project.desc}
-                </p>
-
-                {project.link && (
-                  <Link
-                    href={project.link}
-                    className="inline-flex items-center gap-2 text-accent-blue font-bold text-sm hover:text-white transition-colors duration-200 group/link"
-                  >
-                    View Case Study
-                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" />
-                  </Link>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
+        {/* Right Side: Text Content */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="w-full md:w-1/2"
+        >
+          <div className="text-accent-blue font-bold tracking-widest uppercase text-xs mb-4">
+            Featured Work
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6 text-white leading-tight">
+            The <span className="text-accent-blue">Future </span><span> of</span> 
+            <br />
+              <span>Restaurant </span><span className="text-accent-blue">Hospitality.</span>
+          </h2>
+          <p className="text-gray-400 mb-8 leading-relaxed">
+            DoDo Bot is an intelligent service solution designed to tackle
+            multiple restaurant challenges simultaneously. It boosts operational
+            efficiency by delivering large orders to multiple tables in a single
+            trip, significantly speeding up service during rush hours. By taking
+            over the heavy lifting, it frees your staff to focus entirely on
+            premium hospitality and guest satisfaction. Furthermore, its
+            futuristic presence acts as a powerful marketing magnet, attracting
+            families and turning every meal into a memorable, highly shareable
+            experience.
+          </p>
+          <Link
+            href="/projects/dodo-x"
+            className="inline-flex items-center font-bold text-white hover:text-accent-blue transition-colors group"
+          >
+            View Case Study{" "}
+            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
-};
+}
