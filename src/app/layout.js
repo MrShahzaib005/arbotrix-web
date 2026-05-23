@@ -32,11 +32,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
-        {/* Everything inside 'children' is your pages (Hero, Navbar, etc.) */}
+      {/* 1. overflow-x-hidden: Kills horizontal scrolling and black voids permanently.
+        2. antialiased: Makes the font render smoother and thinner.
+        3. bg-[#0B0D14] text-white: Sets a reliable global baseline.
+      */}
+      <body className={`${inter.className} overflow-x-hidden antialiased bg-[#0B0D14] text-white`}>
+        
         {children}
         
-        {/* The Footer stays pinned at the bottom of the layout globally */}
         <Footer />
       </body>
     </html>
