@@ -13,7 +13,7 @@ import ProductTeaser from "@/components/sections/ProductTeaser";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0B0D14] text-white selection:bg-accent-blue selection:text-white">
+    <main className="min-h-screen bg-[#0B0D14] text-white selection:bg-accent-blue selection:text-white overflow-hidden">
       <Navbar />
       <Hero />
       
