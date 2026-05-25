@@ -1,4 +1,4 @@
-"use client";
+
 import { useState } from "react";
 import { verifyOTP } from "@/app/actions/auth";
 import { useSearchParams } from "next/navigation";
