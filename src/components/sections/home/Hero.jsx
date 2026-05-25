@@ -9,9 +9,9 @@ export default function Hero() {
       <img
         src="/images/dodopic.png"
         alt="Robot background"
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        className="absolute inset-0 w-full h-full object-cover object-top z-0"
       />
-
+      {/*className="absolute inset-0 w-full h-full object-cover object-[center_20%] z-0" */}
       {/* 2. The Dark Overlay Gradient (Crucial for text readability) */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/60 to-[#0B0D14]" />
 
