@@ -1,10 +1,13 @@
+'use client'
 
-import { useState } from "react";
+// 1. Added Suspense to the React import
+import { useState, Suspense } from "react";
 import { verifyOTP } from "@/app/actions/auth";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
-export default function VerifyPage() {
+// 2. Renamed the internal component to VerifyForm
+function VerifyForm() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   const redirectTo = searchParams.get("redirectTo") || "/dashboard";
@@ -70,5 +73,14 @@ export default function VerifyPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+// 3. This remains the default export for Next.js to use
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0B0D14] flex items-center justify-center text-white font-mono">Initializing secure gateway...</div>}>
+      <VerifyForm />
+    </Suspense>
   );
 }
