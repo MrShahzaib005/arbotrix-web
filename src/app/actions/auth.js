@@ -66,6 +66,55 @@ export async function logout() {
   redirect('/')
 }
 
+// export async function verifyOTP(formData) {
+//   const supabase = await createClient()
+
+//   const email = formData.get('email')
+//   const code = formData.get('code')
+//   const redirectTo = formData.get('redirectTo') || '/dashboard'
+
+//   // 1. Validate the 6-digit code
+//   const { data, error } = await supabase.auth.verifyOtp({
+//     email,
+//     token: code,
+//     type: 'signup'
+//   })
+
+//   if (error) {
+//     return { error: "Invalid or expired verification code." }
+//   }
+
+//   // 2. The Database Injection (Post-Verification)
+//   if (data.user) {
+//     try {
+//       // Extract the names we stored during the initial signup
+//       const firstName = data.user.user_metadata?.first_name || "Unknown"
+//       const lastName = data.user.user_metadata?.last_name || "Unknown"
+
+//       await prisma.user.create({
+//         data: {
+//           id: data.user.id,
+//           email: data.user.email,
+//           firstName: firstName,
+//           lastName: lastName,
+//         }
+//       })
+
+//       console.log("✅ PRISMA SYNC SUCCESSFUL AFTER OTP VERIFICATION")
+
+//     } catch (dbError) {
+//       // If P2002 triggers, the user verified twice and is already in Prisma. We safely ignore it.
+//       if (dbError.code !== 'P2002') {
+//         console.error("🚨 PRISMA CRASH DETECTED 🚨:", dbError)
+//         return { error: "Secure database sync failed. Contact Admin." }
+//       }
+//     }
+//   }
+
+//   // 3. Open the gates to the dashboard
+//   redirect(redirectTo)
+// }
+
 export async function verifyOTP(formData) {
   const supabase = await createClient()
 
@@ -87,9 +136,17 @@ export async function verifyOTP(formData) {
   // 2. The Database Injection (Post-Verification)
   if (data.user) {
     try {
-      // Extract the names we stored during the initial signup
       const firstName = data.user.user_metadata?.first_name || "Unknown"
       const lastName = data.user.user_metadata?.last_name || "Unknown"
+
+      // --- THE VIP CHECK ---
+      // Query the AdminDirectory to see if this email is pre-approved
+      const adminRecord = await prisma.adminDirectory.findUnique({
+        where: { email: data.user.email }
+      })
+
+      // If they are in the directory, promote them. Otherwise, standard clearance.
+      const assignedRole = adminRecord ? 'ADMIN' : 'STUDENT'
 
       await prisma.user.create({
         data: {
@@ -97,13 +154,13 @@ export async function verifyOTP(formData) {
           email: data.user.email,
           firstName: firstName,
           lastName: lastName,
+          role: assignedRole, // Automatically assign the correct role
         }
       })
-
-      console.log("✅ PRISMA SYNC SUCCESSFUL AFTER OTP VERIFICATION")
-
+      
+      console.log(`✅ PRISMA SYNC SUCCESSFUL. ROLE ASSIGNED: ${assignedRole}`)
+      
     } catch (dbError) {
-      // If P2002 triggers, the user verified twice and is already in Prisma. We safely ignore it.
       if (dbError.code !== 'P2002') {
         console.error("🚨 PRISMA CRASH DETECTED 🚨:", dbError)
         return { error: "Secure database sync failed. Contact Admin." }
