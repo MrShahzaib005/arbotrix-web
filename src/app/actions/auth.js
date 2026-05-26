@@ -32,22 +32,14 @@ export async function signup(formData) {
   const password = formData.get('password')
   const firstName = formData.get('firstName')
   const lastName = formData.get('lastName')
-  
-  // THE MISSING LINK: You must extract the redirectTo value from the form
   const redirectTo = formData.get('redirectTo') || '/dashboard'
 
-  // THE PASSWORD VAULT: Strict Regex Constraint
-  // Reverted to {8,} to match your error message and enforce security
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/
-
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/
   if (!passwordRegex.test(password)) {
-    return {
-      error: "Password must be at least 8 characters long, and include an uppercase letter, a number, and a special character."
-    }
+    return { error: "Password must be at least 8 characters long, and include an uppercase letter, a number, and a special character." }
   }
 
-  // --- THE FIX 1: INJECTING THE METADATA OPTIONS ---
-  const { data, error } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -58,28 +50,13 @@ export async function signup(formData) {
     }
   })
 
+  // If Supabase completely rejects the signup (e.g., password too weak, email invalid)
   if (error) {
     return { error: error.message }
   }
 
-  if (data.user) {
-    try {
-      await prisma.user.create({
-        data: {
-          id: data.user.id,
-          email: data.user.email,
-          firstName: firstName,
-          lastName: lastName,
-        }
-      })
-    } catch (dbError) {
-      // --- THE FIX 2: LOUD CRASH DETECTION ---
-      console.error("🚨 PRISMA CRASH DETECTED 🚨:", dbError)
-      return { error: "CRITICAL: Database sync failed. Check your VS Code terminal for the exact Prisma error." }
-    }
-  }
-
-  // Return the payload. The frontend will catch this and route them to /verify
+  // Notice: The Trap is gone. Prisma is gone. 
+  // We just return success and let the frontend push them to the OTP screen.
   return { success: true, email: email, redirectTo: redirectTo }
 }
 
@@ -96,17 +73,44 @@ export async function verifyOTP(formData) {
   const code = formData.get('code')
   const redirectTo = formData.get('redirectTo') || '/dashboard'
 
-  // Supabase takes the email and the 6-digit code and verifies them
+  // 1. Validate the 6-digit code
   const { data, error } = await supabase.auth.verifyOtp({
     email,
     token: code,
-    type: 'signup' // Tells Supabase this is for a new account
+    type: 'signup'
   })
 
   if (error) {
     return { error: "Invalid or expired verification code." }
   }
 
-  // If successful, log them in and redirect them exactly where they were
+  // 2. The Database Injection (Post-Verification)
+  if (data.user) {
+    try {
+      // Extract the names we stored during the initial signup
+      const firstName = data.user.user_metadata?.first_name || "Unknown"
+      const lastName = data.user.user_metadata?.last_name || "Unknown"
+
+      await prisma.user.create({
+        data: {
+          id: data.user.id,
+          email: data.user.email,
+          firstName: firstName,
+          lastName: lastName,
+        }
+      })
+
+      console.log("✅ PRISMA SYNC SUCCESSFUL AFTER OTP VERIFICATION")
+
+    } catch (dbError) {
+      // If P2002 triggers, the user verified twice and is already in Prisma. We safely ignore it.
+      if (dbError.code !== 'P2002') {
+        console.error("🚨 PRISMA CRASH DETECTED 🚨:", dbError)
+        return { error: "Secure database sync failed. Contact Admin." }
+      }
+    }
+  }
+
+  // 3. Open the gates to the dashboard
   redirect(redirectTo)
 }
