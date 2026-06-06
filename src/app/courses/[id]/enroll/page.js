@@ -1,45 +1,48 @@
 import { notFound, redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server"; // ADDED: The Supabase Server connection
 import prisma from "@/utils/prisma";
 import EnrollFormClient from "./EnrollFormClient"; 
 import { ShieldCheck, Package, ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar"; 
 import Link from "next/link"; 
 
-// IMPORT YOUR AUTH FUNCTION HERE
-// import { getSession } from "@/utils/auth"; 
-
 export default async function EnrollPage({ params }) {
   const resolvedParams = await params;
 
-  // 1. Fetch the course
+  // ==========================================
+  // 1. THE INTERCEPT: Supabase Auth Check
+  // ==========================================
+  const supabase = await createClient();
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+  // If they are not logged in, catch the URL and slingshot them to the login screen
+  if (!user || authError) {
+    const currentPath = `/courses/${resolvedParams.id}/enroll`;
+    redirect(`/login?redirectTo=${encodeURIComponent(currentPath)}`);
+  }
+
+  // ==========================================
+  // 2. THE DATA INJECTION: Fetch Operator Name
+  // ==========================================
+  const operator = await prisma.user.findUnique({
+    where: { id: user.id },
+    select: { firstName: true, lastName: true }
+  });
+
+  // Construct the real name, fallback if database sync was somehow delayed
+  const operatorName = operator 
+    ? `${operator.firstName} ${operator.lastName}` 
+    : 'Unverified Operator';
+
+  // ==========================================
+  // 3. COURSE VALIDATION
+  // ==========================================
   const course = await prisma.course.findUnique({
     where: { id: resolvedParams.id },
     select: { id: true, title: true, price: true } 
   });
 
   if (!course) notFound();
-
-  // ==========================================
-  // 2. THE AUTH & USER FETCHING LOGIC
-  // ==========================================
-  
-  // A. Get the logged-in user's session
-  // const session = await getSession();
-  // if (!session) redirect(`/login?next=/courses/${course.id}/enroll`);
-  
-  // B. Query the Prisma database for this specific user to get their name
-  /* const dbUser = await prisma.user.findUnique({
-    where: { email: session.email } // Or filter by session.id depending on your auth setup
-  });
-  */
-
-  // C. Determine the display name (Fallback to email if names are null)
-  // const operatorName = dbUser?.firstName 
-  //   ? `${dbUser.firstName} ${dbUser.lastName || ""}` 
-  //   : session.email;
-
-  // ⚠️ TEMPORARY MOCK DATA (Until you uncomment the auth logic above)
-  const operatorName = "Syed Mirza Shahzaib"; 
 
   return (
     <main className="min-h-[100svh] bg-[#0B0D14] text-white selection:bg-accent-blue pb-24">
@@ -59,7 +62,7 @@ export default async function EnrollPage({ params }) {
           <div>
             <h1 className="text-2xl font-black uppercase tracking-tight text-white">Secure Enrollment</h1>
             
-            {/* THE FIX: Injecting the dynamic operator name */}
+            {/* THE FIX: Dynamically rendering the real database operator name */}
             <p className="text-gray-500 text-sm">Operator: <span className="text-white font-medium">{operatorName}</span></p>
             
           </div>
@@ -86,6 +89,7 @@ export default async function EnrollPage({ params }) {
 
           <div className="w-full h-px bg-gray-800 mb-8" />
 
+          {/* You might want to pass the user's ID or Email to the client component so you can link the enrollment to them */}
           <EnrollFormClient courseId={course.id} />
           
         </div>

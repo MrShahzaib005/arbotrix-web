@@ -6,6 +6,11 @@ import { useSearchParams } from "next/navigation";
 import { signup } from "@/app/actions/auth";
 import { AlertCircle, Loader2, Mail, Lock, User } from "lucide-react";
 
+export const metadata = {
+  title: 'Apply for Clearance',
+  description: 'Create your Arbotrix operator profile to access elite physical engineering courses and request hardware provisions.',
+}
+
 // 1. Create the sub-component for the form logic
 function RegisterForm() {
   const [error, setError] = useState(null);
@@ -69,7 +74,7 @@ function RegisterForm() {
           <label className="text-xs font-bold text-gray-300">Email</label>
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-            <input type="email" name="email" required placeholder="you@arbotrix.tech" className="w-full bg-[#0B0D14] border border-gray-800 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-all text-sm shadow-inner" />
+            <input type="email" name="email" required placeholder="you@arbotrix.com" className="w-full bg-[#0B0D14] border border-gray-800 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-all text-sm shadow-inner" />
           </div>
         </div>
 

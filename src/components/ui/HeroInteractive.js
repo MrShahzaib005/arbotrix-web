@@ -1,15 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function HeroInteractive() {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: null, y: null, radius: 150 });
 
   // 1. THE TYPEWRITER EFFECT
-  const words = ["Autonomy.", "Robotics.", "Intelligence."];
+  const words = ["Engineers", "Architects", "Innovators"];
   const [currentWord, setCurrentWord] = useState(0);
 
   useEffect(() => {
@@ -83,7 +81,7 @@ export default function Hero() {
         let y = Math.random() * innerHeight - size * 2;
         let directionX = Math.random() * 2 - 1.5;
         let directionY = Math.random() * 2 - 1.5;
-        let color = "rgba(0, 163, 255, 0.6)"; // Matches your accent-blue
+        let color = "rgba(0, 212, 255, 0.5)"; // Arbotrix Cyan
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
     }
@@ -110,8 +108,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-[#0B0D14]"
+    <div 
+      className="relative w-full h-screen bg-[#0B0D14] overflow-hidden flex flex-col justify-center items-center"
       onMouseMove={(e) => {
         mouseRef.current.x = e.clientX;
         mouseRef.current.y = e.clientY;
@@ -121,77 +119,47 @@ export default function Hero() {
         mouseRef.current.y = null;
       }}
     >
-      {/* 1. Background Image */}
-      <img
-        src="/images/dodopic.png"
-        alt="Robot background"
-        className="absolute inset-0 w-full h-full object-cover object-top z-0 opacity-40"
-      />
-      
-      {/* 2. Gradient Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/60 to-[#0B0D14]" />
+      {/* Background Canvas */}
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
-      {/* 3. Interactive Canvas Particle Engine */}
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-[15]" />
-
-      {/* 4. The Foreground Content */}
-      <div className="relative z-20 flex flex-col items-center w-full px-6 max-w-7xl mx-auto pt-20">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-tight drop-shadow-2xl"
-        >
-          Engineering the Future <br className="hidden md:block" /> of{" "}
-          <span className="text-accent-blue drop-shadow-lg inline-block min-w-[280px] text-left">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentWord}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="inline-block"
-              >
-                {words[currentWord]}
-              </motion.span>
-            </AnimatePresence>
+      {/* Hero Content */}
+      <div className="z-10 text-center px-6">
+        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
+          Training the Next Generation of <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 block h-[1.2em]">
+            <motion.span
+              key={currentWord}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              {words[currentWord]}
+            </motion.span>
           </span>
-        </motion.h1>
+        </h1>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
+          Master Applied Python, Connected Embedded Systems, and Autonomous Robotics.
+        </p>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10 leading-relaxed drop-shadow-md"
-        >
-          We bridge the gap between high-performance software architecture and
-          precision hardware. Built for scale, engineered for reality.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-16"
-        >
-          <Link
-            href="/services"
-            className="bg-white hover:bg-gray-200 text-black font-bold py-4 px-8 rounded-full transition-all flex items-center justify-center gap-2 shadow-xl hover:shadow-accent-blue/20"
-          >
-            Work With Us <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/courses"
-            className="bg-[#131620]/80 backdrop-blur-md hover:bg-accent-blue border border-gray-800 hover:border-accent-blue text-white font-bold py-4 px-8 rounded-full transition-all duration-300 text-center shadow-lg hover:shadow-[0_0_20px_rgba(0,163,255,0.4)]"
-          >
-            Explore Courses
-          </Link>
-        </motion.div>
-
-        {/* 5. ZazaByte-Style Glassmorphic Stats Bar */}
-
+        {/* The Glassmorphic Stats Bar */}
+        <div className="flex flex-wrap justify-center gap-8 p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_40px_rgba(0,212,255,0.1)]">
+          <div className="text-center">
+            <h3 className="text-3xl font-black text-cyan-400">500+</h3>
+            <p className="text-xs uppercase tracking-widest text-gray-400 mt-1">Active Nodes</p>
+          </div>
+          <div className="w-px bg-white/10 hidden md:block"></div>
+          <div className="text-center">
+            <h3 className="text-3xl font-black text-cyan-400">99.9%</h3>
+            <p className="text-xs uppercase tracking-widest text-gray-400 mt-1">Uptime</p>
+          </div>
+          <div className="w-px bg-white/10 hidden md:block"></div>
+          <div className="text-center">
+            <h3 className="text-3xl font-black text-emerald-400">Verified</h3>
+            <p className="text-xs uppercase tracking-widest text-gray-400 mt-1">Clearance</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

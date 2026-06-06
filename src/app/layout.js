@@ -7,19 +7,24 @@ const inter = Inter({ subsets: ["latin"] });
 
 // This handles the Global SEO and OpenGraph configurations
 export const metadata = {
+  metadataBase: new URL('https://arbotrix.com'), // Your actual live domain
   title: {
-    template: '%s | Arbotrix Robotics',
-    default: 'Arbotrix Robotics | Engineered Autonomy',
+    default: 'Arbotrix | Engineering Autonomous Systems',
+    template: '%s | Arbotrix', // Automatically appends the site name to child pages
   },
-  description: 'Custom robotics integration, autonomous platforms, and ROS2 engineering pipelines. We build hardware that works and software that scales.',
+  description: 'Join the network. Arbotrix provides elite, task-based physical engineering courses in Applied Python, Connected Embedded Systems, and Autonomous Robotics.',
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: 'Arbotrix Robotics',
-    description: 'Precision engineering for industrial and commercial automation.',
+    title: 'Arbotrix | Next-Gen Hardware Engineering',
+    description: 'Elite training in autonomous systems, robotics, and embedded IoT.',
     url: 'https://arbotrix.com',
     siteName: 'Arbotrix',
     images: [
       {
-        url: '/og-image.jpg', // Sumaiya needs to place a cool 1200x630 image in the /public folder named og-image.jpg
+        url: '/images/arbotrix-og.jpg', // Create a 1200x630 banner image for this
         width: 1200,
         height: 630,
       },
@@ -27,7 +32,7 @@ export const metadata = {
     locale: 'en_US',
     type: 'website',
   },
-};
+}
 
 export default function RootLayout({ children }) {
   return (

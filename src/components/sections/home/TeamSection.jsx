@@ -1,331 +1,159 @@
-// // UPDATED THE TEAM SECTION
-
-// "use client";
-// import { motion } from "framer-motion";
-
-// // 1. Separated the Leadership/Founders
-// const FOUNDERS = [
-//   { 
-//     name: "AQIL KHAN", 
-//     role: "CEO & Founder", 
-//     img: "/images/aqil-khan.jpeg", 
-//     bio: "Driving the strategic vision and business growth of Arbotrix. Focuses on scaling autonomous solutions for enterprise clients." 
-//   },
-//   { 
-//     name: "KASHAF NOOR", 
-//     role: "COO & Co-Founder", 
-//     img: "/images/kashaf-noor.jpeg", 
-//     bio: "Leading daily operations and advancing the machine learning pipelines that power our core AI architecture." 
-//   },
-//   { 
-//     name: "SHAHZAIB", 
-//     role: "CTO & Co-Founder", 
-//     img: "/images/shahzaib-arbo.jpeg", 
-//     bio: "Architecting the technical infrastructure, bridging the gap between high-level software and precision hardware." 
-//   },
-// ];
-
-// // 2. Separated the Core Engineering & Design Team
-// const CORE_TEAM = [
-//   { 
-//     name: "SUMAYYA ZAHID", 
-//     role: "AI Engineer", 
-//     img: "/images/sumayya.jpeg", 
-//     bio: "Building intelligent systems through machine learning, deep learning, and real time AI solutions for automation and smart applications." 
-//   },
-//   { 
-//     name: "SYED ALI", 
-//     role: "Robotic Hardware Engineer", 
-//     img: "/images/ali-boy.jpeg", 
-//     bio: "Designing reliable hardware architectures, embedded systems, and sensor integrations for high-performance smart devices." 
-//   },
-//   { 
-//     name: "SAIM", 
-//     role: "Robotic Eng and CAD Designer", 
-//     img: "/images/saim.jpeg", 
-//     bio: "Designing intelligent robotic systems with precision CAD modeling, combining automation, mechanical design, and smart engineering solutions for real-world applications." 
-//   },
-//   { 
-//     name: "DR ANAS", 
-//     role: "Robotic Engineer", 
-//     img: "/images/anas-bhai.jpeg", 
-//     bio: "Developing autonomous robotic systems by combining AI, software, sensors, and precision hardware for real-world applications." 
-//   }
-// ];
-
-// // Reusable Card Component
-// const TeamCard = ({ member }) => (
-//   <div className="relative h-[400px] rounded-2xl overflow-hidden group cursor-pointer bg-gray-900">
-//     {/* Base Image */}
-//     <img
-//       src={member.img}
-//       alt={member.name}
-//       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-//     />
-    
-//     {/* Gradient Overlay - Darkens slightly on hover for text readability */}
-//     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D14] via-[#05050A]/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
-
-//     {/* Content Container positioned at the bottom */}
-//     <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-//       <h3 className="font-heading font-black text-white text-2xl tracking-tight mb-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-//         {member.name}
-//       </h3>
-//       <p className="text-accent-blue font-bold text-sm tracking-widest uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-//         {member.role}
-//       </p>
-
-//       {/* The Magic Hover Reveal */}
-//       <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-//         <div className="overflow-hidden">
-//           <p className="pt-4 text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-//             {member.bio}
-//           </p>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
-
-// export default function TeamSection() {
-//   return (
-//     <section className="bg-[#0B0D14] py-32 border-t border-gray-900">
-//       <div className="max-w-7xl mx-auto px-6 lg:px-9">
-        
-//         {/* Main Header */}
-//         <div className="mb-20 text-center md:text-left">
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.6 }}
-//           >
-//             <p className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] font-bold mb-3">
-//               Leadership & Engineering
-//             </p>
-//             <h2 className="font-heading text-4xl md:text-6xl font-black text-white leading-tight">
-//               The Minds <br className="hidden md:block" />
-//               <span className="text-accent-blue">Behind Arbotrix.</span>
-//             </h2>
-//           </motion.div>
-//         </div>
-
-//         {/* Tier 1: Founders (3 Columns) */}
-//         <div className="mb-24">
-//           <h3 className="text-white font-bold tracking-widest uppercase text-sm mb-8 border-b border-gray-800 pb-4 inline-block">
-//             Founding Board
-//           </h3>
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//             {FOUNDERS.map((member, i) => (
-//               <motion.div
-//                 key={member.name}
-//                 initial={{ opacity: 0, y: 30 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.5, delay: i * 0.1 }}
-//               >
-//                 <TeamCard member={member} />
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Tier 2: Core Team (4 Columns) */}
-//         <div>
-//           <h3 className="text-white font-bold tracking-widest uppercase text-sm mb-8 border-b border-gray-800 pb-4 inline-block">
-//             Core Engineering & Design
-//           </h3>
-//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//             {CORE_TEAM.map((member, i) => (
-//               <motion.div
-//                 key={member.name}
-//                 initial={{ opacity: 0, y: 30 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 viewport={{ once: true }}
-//                 transition={{ duration: 0.5, delay: i * 0.1 }}
-//               >
-//                 <TeamCard member={member} />
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-
-//       </div>
-//     </section>
-//   );
-// }
-
 "use client";
 import { motion } from "framer-motion";
 
-// 1. Separated the Leadership/Founders
 const FOUNDERS = [
   { 
     name: "AQIL KHAN", 
     role: "CEO & Founder", 
     img: "/images/aqil-khan.jpeg", 
-    bio: "Driving the strategic vision and business growth of Arbotrix. Focuses on scaling autonomous solutions for enterprise clients." 
-  },
-  { 
-    name: "KASHAF NOOR", 
-    role: "COO & Co-Founder", 
-    img: "/images/kashaf-noor.jpeg", 
-    bio: "Leading daily operations and advancing the machine learning pipelines that power our core AI architecture." 
+    bio: "Driving the strategic vision and business growth of Arbotrix. Focuses on scaling autonomous solutions for enterprise clients, forging global partnerships, and ensuring the technical roadmap aligns with market demands." 
   },
   { 
     name: "SHAHZAIB", 
     role: "CTO & Co-Founder", 
     img: "/images/shahzaib-arbo.jpeg", 
-    bio: "Architecting the technical infrastructure, bridging the gap between high-level software and precision hardware." 
+    bio: "Architecting the technical infrastructure. Bridges the gap between high-level software ecosystems and precision hardware, ensuring our autonomous systems are scalable, secure, and production-ready." 
+  },
+  { 
+    name: "KASHAF NOOR", 
+    role: "COO & Co-Founder", 
+    img: "/images/kashaf-noor.jpeg", 
+    bio: "Leading daily operations and advancing the machine learning pipelines. Orchestrates the deployment of our core AI architecture and manages the cross-functional engineering teams." 
   }
 ];
 
-// 2. Separated the Core Engineering & Design Team
 const CORE_TEAM = [
   { 
     name: "SUMAYYA ZAHID", 
     role: "AI Engineer", 
     img: "/images/sumayya.jpeg", 
-    bio: "Building intelligent systems through machine learning, deep learning, and real time AI solutions for automation and smart applications." 
+    bio: "Building intelligent systems through machine learning and real-time AI solutions for smart applications." 
   },
   { 
     name: "SYED ALI", 
     role: "Robotic Hardware Engineer", 
     img: "/images/ali-boy.jpeg", 
-    bio: "Designing reliable hardware architectures, embedded systems, and sensor integrations for high-performance smart devices." 
+    bio: "Designing reliable hardware architectures, embedded systems, and sensor integrations for smart devices." 
   },
   { 
     name: "SAIM", 
     role: "Robotic Eng and CAD Designer", 
     img: "/images/saim.jpeg", 
-    bio: "Designing intelligent robotic systems with precision CAD modeling, combining automation, mechanical design, and smart engineering solutions for real-world applications." 
+    bio: "Designing intelligent robotic systems with precision CAD modeling and smart engineering solutions." 
   },
   { 
     name: "DR ANAS", 
     role: "Robotic Engineer", 
     img: "/images/anas-bhai.jpeg", 
-    bio: "Developing autonomous robotic systems by combining AI, software, sensors, and precision hardware for real-world applications." 
+    bio: "Developing autonomous robotic systems by combining AI, software, sensors, and precision hardware." 
   }
 ];
 
-// Reusable Card Component
-const TeamCard = ({ member }) => (
-  <div className="relative h-[400px] rounded-2xl overflow-hidden group cursor-pointer bg-gray-900 w-full">
-    {/* Base Image */}
-    <img
-      src={member.img}
-      alt={member.name}
-      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-    />
-    
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D14] via-[#05050A]/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
-
-    {/* Content Container */}
-    <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-      <h3 className="font-heading font-black text-white text-2xl tracking-tight mb-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-        {member.name}
-      </h3>
-      <p className="text-accent-blue font-bold text-sm tracking-widest uppercase translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-        {member.role}
-      </p>
-
-      {/* Hover Reveal */}
-      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
-        <div className="overflow-hidden">
-          <p className="pt-4 text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-            {member.bio}
-          </p>
-        </div>
-      </div>
+// The Circular HR-style template applied to EVERYONE
+const CircularTeamCard = ({ member }) => (
+  <div className="flex flex-col items-center text-center group">
+    {/* Circular Image Container */}
+    <div className="w-40 md:w-48 h-40 md:h-48 rounded-full overflow-hidden mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] group-hover:shadow-[0_20px_40px_rgba(0,163,255,0.15)] border-4 border-white group-hover:border-blue-50 transition-all duration-500 relative bg-slate-100">
+      <img
+        src={member.img}
+        alt={member.name}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/10 transition-colors duration-500" />
     </div>
+    
+    {/* Centered Typography */}
+    <h4 className="font-black text-xl text-slate-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+      {member.name}
+    </h4>
+    <p className="text-blue-600 font-bold text-[10px] tracking-widest uppercase mb-4">
+      {member.role}
+    </p>
+    <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
+      {member.bio}
+    </p>
   </div>
 );
 
 export default function TeamSection() {
   return (
-    <section className="bg-[#0B0D14] py-32 border-t border-gray-900 overflow-hidden">
+    <section className="bg-slate-50 py-32 border-t border-gray-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-9">
         
         {/* Main Header */}
-        <div className="mb-20 text-center md:text-left">
+        <div className="mb-24 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-mono text-accent-blue text-xs uppercase tracking-[0.2em] font-bold mb-3">
+            <p className="font-mono text-blue-600 text-xs uppercase tracking-[0.2em] font-bold mb-4">
               Leadership & Engineering
             </p>
-            <h2 className="font-heading text-4xl md:text-6xl font-black text-white leading-tight">
+            <h2 className="font-heading text-4xl md:text-6xl font-black text-slate-900 leading-tight">
               The Minds <br className="hidden md:block" />
-              <span className="text-accent-blue">Behind Arbotrix.</span>
+              <span className="text-blue-600">Behind Arbotrix.</span>
             </h2>
           </motion.div>
         </div>
 
-        {/* Tier 1: Founders (3 Columns - Stays Static) */}
-        <div className="mb-24">
-          <h3 className="text-white font-bold tracking-widest uppercase text-sm mb-8 border-b border-gray-800 pb-4 inline-block">
-            Founding Board
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* TIER 1: FOUNDING BOARD (NOW USING CIRCULAR LAYOUT) */}
+        <div className="w-full mb-24">
+          <div className="text-center mb-16">
+            <h3 className="text-slate-900 font-black text-3xl tracking-tight mb-4">
+              Founding Board
+            </h3>
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto">
+              The architects driving the strategic and technical vision of Arbotrix.
+            </p>
+          </div>
+          
+          {/* Centered 3-column grid for Founders */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-16 max-w-5xl mx-auto">
             {FOUNDERS.map((member, i) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                className="h-full"
               >
-                <TeamCard member={member} />
+                <CircularTeamCard member={member} />
               </motion.div>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Tier 2: Core Team (Infinite Loop Carousel) */}
-      <div className="w-full">
-        <div className="max-w-7xl mx-auto px-6 lg:px-9">
-          <h3 className="text-white font-bold tracking-widest uppercase text-sm mb-8 border-b border-gray-800 pb-4 inline-block">
-            Core Engineering & Design
-          </h3>
+        {/* TIER 2: CORE TEAM */}
+        <div className="w-full pt-20 border-t border-gray-200">
+          <div className="text-center mb-20">
+            <h3 className="text-slate-900 font-black text-3xl tracking-tight mb-4">
+              Core Engineering & Design
+            </h3>
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto">
+              The specialists executing the complex hardware and AI pipelines behind the scenes.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+            {CORE_TEAM.map((member, i) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                className="h-full"
+              >
+                <CircularTeamCard member={member} />
+              </motion.div>
+            ))}
+          </div>
         </div>
-        
-        {/* The Sliding Marquee Container */}
-        <div className="relative w-full flex overflow-hidden group">
-          <motion.div
-            className="flex whitespace-nowrap"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ 
-              ease: "linear", 
-              duration: 25, // Adjust this higher to slow down, lower to speed up
-              repeat: Infinity 
-            }}
-          >
-            {/* First Set of Cards */}
-            <div className="flex gap-6 pr-6 px-6 lg:px-9">
-              {CORE_TEAM.map((member) => (
-                <div key={`${member.name}-1`} className="w-[280px] md:w-[320px] flex-shrink-0">
-                  <TeamCard member={member} />
-                </div>
-              ))}
-            </div>
 
-            {/* Second Set of Cards (Required for seamless looping) */}
-            <div className="flex gap-6 pr-6">
-              {CORE_TEAM.map((member) => (
-                <div key={`${member.name}-2`} className="w-[280px] md:w-[320px] flex-shrink-0">
-                  <TeamCard member={member} />
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
       </div>
-      
     </section>
   );
 }

@@ -23,7 +23,7 @@ export default function HomePage() {
       {/* <EcosystemOrbit /> */}
       {/* <RobotShowcaseGrid /> */}
       {/* <ProductTeaser /> */}
-      <HomeProductTeaser />
+      {/* <HomeProductTeaser /> */}
       <HardwareShowcase />
       <TeamSection />
       <PreFooterCTA />
