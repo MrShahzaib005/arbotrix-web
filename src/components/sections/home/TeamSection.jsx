@@ -9,6 +9,12 @@ const FOUNDERS = [
     bio: "Driving the strategic vision and business growth of Arbotrix. Focuses on scaling autonomous solutions for enterprise clients, forging global partnerships, and ensuring the technical roadmap aligns with market demands." 
   },
   { 
+    name: "NOOR KHAN", 
+    role: "Co-Founder", 
+    img: "/images/noor-bhai.jpeg", 
+    bio: "Driving the backend operations and internal growth of Arbotrix. Focuses on building core support systems, connecting the team with top talent, and ensuring smooth execution" 
+  },
+  { 
     name: "SHAHZAIB", 
     role: "CTO & Co-Founder", 
     img: "/images/shahzaib-arbo.jpeg", 
@@ -17,7 +23,7 @@ const FOUNDERS = [
   { 
     name: "KASHAF NOOR", 
     role: "COO & Co-Founder", 
-    img: "/images/kashaf-noor.jpeg", 
+    img: "/images/kashaf.jpeg", 
     bio: "Leading daily operations and advancing the machine learning pipelines. Orchestrates the deployment of our core AI architecture and manages the cross-functional engineering teams." 
   }
 ];
@@ -38,7 +44,7 @@ const CORE_TEAM = [
   { 
     name: "SAIM", 
     role: "Robotic Eng and CAD Designer", 
-    img: "/images/saim.jpeg", 
+    img: "/images/saim-bro.jpeg", 
     bio: "Designing intelligent robotic systems with precision CAD modeling and smart engineering solutions." 
   },
   { 
