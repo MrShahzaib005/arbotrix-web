@@ -32,10 +32,9 @@ const FOUNDERS = [
 const CORE_TEAM = [
   { 
     name: "SUMAYYA ZAHID", 
-    role: "AI Engineer", 
+    role: "Robotic Engineer", 
     img: "/images/sumayya.jpeg", 
-    bio: "Building intelligent systems through machine learning and real-time AI solutions for smart applications." 
-  },
+    bio: "Developing AI-powered robotic solutions by combining machine learning, embedded hardware, computer vision, and intelligent automation."  },
   { 
     name: "SYED ALI", 
     role: "Robotic Hardware Engineer", 
