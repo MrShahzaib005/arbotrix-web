@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
-import ClientSatisfaction from "@/components/sections/contact/ClientSatisfaction";
-import ContactForm from "@/components/sections/contact/ContactForm"; // Adjust path if yours is different
+// Using your exact component path
+import ContactClient from "@/components/sections/contact/ContactClient";
 
 export const metadata = {
   title: "Contact | Arbotrix Robotics",
@@ -9,18 +9,17 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    // FIX: Locked in the global #0B0D14 slate background
-    <main className="min-h-screen bg-[#0B0D14] selection:bg-accent-blue selection:text-white">
-      <Navbar />
+    // Locked in the Light Theme (slate-50) we agreed upon
+    <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white pb-24 relative overflow-hidden">
       
-      {/* Added pt-32 to clear the navbar cleanly */}
-      <div className="pt-25 pb-24 relative overflow-hidden">
-        {/* Subtle ambient glow to match the rest of the site */}
-        <div className="absolute top-0 left-1/4 w-[800px] h-[400px] bg-accent-blue/5 blur-[120px] rounded-full pointer-events-none" />
-        
-        <ContactForm />
-        {/* <ClientSatisfaction /> */}
+      {/* The Blueprint Grid (Restricted to the top area) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-80 pointer-events-none" />
+      
+      <div className="relative z-20">
+        <Navbar />
       </div>
+      
+      <ContactClient />
     </main>
   );
 }
