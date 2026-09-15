@@ -36,7 +36,7 @@ const HERO_SCENARIOS = [
     image: "/images/aero-x.png", 
     link: "/products/aero-x",
     accent: "from-cyan-600 to-blue-700",
-    scale: "scale-75"
+    scale: "scale-100"
   }
 ];
 

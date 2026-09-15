@@ -13,6 +13,16 @@ export default {
         // Creates the 'font-heading' class for Montserrat
         heading: ['var(--font-montserrat)', 'sans-serif'],
       },
+      // ADDED THE SCAN ANIMATION HERE
+      keyframes: {
+        scan: {
+          '0%, 100%': { transform: 'translateY(-100%)' },
+          '50%': { transform: 'translateY(550px)' },
+        }
+      },
+      animation: {
+        scan: 'scan 3s ease-in-out infinite',
+      }
     },
   },
   plugins: [],
