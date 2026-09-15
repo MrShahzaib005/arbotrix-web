@@ -1,14 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import ServicesHero from "@/components/sections/services/ServicesHero";
-
-// Your original components restored:
 import ServiceCards from "@/components/sections/ServiceCards";
 import ProcessTimeline from "@/components/sections/ProcessTimeline";
-import ServicesContactForm from "@/components/sections/ServicesContactForm";
-
-// You can keep the PreFooterCTA or remove it if ServicesContactForm does the job
-import PreFooterCTA from "@/components/sections/home/PreFooterCTA"; 
 import ContactForm from "@/components/sections/contact/ContactForm";
+import PreFooterCTA from "@/components/sections/home/PreFooterCTA"; 
 
 export const metadata = {
   title: "Services | Arbotrix Robotics",
@@ -17,25 +12,23 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-[#0B0D14] selection:bg-accent-blue selection:text-white">
+    // FIX: Stripped the #0B0D14 dark void and forced the light theme blueprint
+    <main className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white font-sans">
       <Navbar />
 
-      {/* 1. The Hook (The new interactive hero we just built) */}
       <ServicesHero />
 
-      {/* 2. The Core Content (Your restored components) */}
       <div className="pb-24 max-w-7xl mx-auto px-6 flex flex-col gap-24 mt-12">
         <ServiceCards />
         <ProcessTimeline />
-        {/* 3. Your Connected Contact Form */}
-        <div className="pt-12 border-t border-gray-800/50">
+        
+        {/* FIX: Changed border-gray-800 to border-slate-200 to match the light theme */}
+        <div className="pt-16 border-t border-slate-200">
           <ContactForm />
         </div>
       </div>
 
-      {/* 3. The Exit Intent (Optional, can remove if Contact Form is enough) */}
       <PreFooterCTA />
-      
     </main>
   );
 }

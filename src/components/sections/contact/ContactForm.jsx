@@ -27,74 +27,81 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="max-w-7xl w-full mx-auto pt-10 px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 relative z-10">
+    <section className="max-w-6xl w-full mx-auto pb-16 px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 font-sans">
       
       {/* LEFT SIDE: Form */}
       <div className="flex flex-col justify-center">
-        <p className="font-mono text-accent-blue text-[10px] uppercase tracking-[0.2em] font-bold mb-3">
-          [ SEND A MESSAGE ]
+        <p className="font-heading text-blue-600 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
+          [ Initiate Uplink ]
         </p>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white uppercase leading-tight mb-8">
-          Talk to us.
-        </h1>
         
+        {/* FIX: Added gradient to "Engineering" for cross-page symmetry. Reduced mb-8 to mb-6. */}
+        <h2 className="text-4xl md:text-5xl font-heading font-black tracking-tighter text-slate-900 uppercase leading-tight mb-6">
+          Talk to <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+            Engineering.
+          </span>
+        </h2>
+        
+        {/* FIX: Tightened gap-5 to gap-4 */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           
-          {/* Status Message Display */}
           {status && (
-            <div className={`p-4 rounded-xl border flex items-center gap-3 text-sm font-bold ${
+            <div className={`p-3 rounded-xl border flex items-center gap-3 text-sm font-bold ${
               status.type === "success" 
-                ? "bg-green-500/10 border-green-500/30 text-green-400" 
-                : "bg-red-500/10 border-red-500/30 text-red-400"
+                ? "bg-green-50 border-green-200 text-green-700" 
+                : "bg-red-50 border-red-200 text-red-700"
             }`}>
               {status.type === "success" ? <CheckCircle className="w-5 h-5 shrink-0" /> : <AlertCircle className="w-5 h-5 shrink-0" />}
               <p>{status.message}</p>
             </div>
           )}
 
+          {/* FIX: Reduced input padding from py-3 to py-2.5 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">First Name</label>
-              <input type="text" name="firstName" required placeholder="Zaid" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">First Name</label>
+              <input type="text" name="firstName" required placeholder="Zaid" className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm shadow-sm" />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Last Name</label>
-              <input type="text" name="lastName" required placeholder="Akhtar" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Last Name</label>
+              <input type="text" name="lastName" required placeholder="Akhtar" className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm shadow-sm" />
             </div>
           </div>
           
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Email</label>
-            <input type="email" name="email" required placeholder="you@example.com" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors text-sm" />
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Email</label>
+            <input type="email" name="email" required placeholder="you@example.com" className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm shadow-sm" />
           </div>
           
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Subject</label>
-            <select name="type" required defaultValue="" className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-accent-blue transition-colors appearance-none cursor-pointer text-sm">
-              <option value="" disabled className="bg-[#131620] text-gray-400">Select a topic</option>
-              <option value="ENTERPRISE_PROJECT" className="bg-[#131620] text-white">Hire Arbotrix (Enterprise/Custom IoT)</option>
-              <option value="HARDWARE_SALES" className="bg-[#131620] text-white">Hardware Inquiry (Drones, UGVs)</option>
-              <option value="COURSE_TRAINING" className="bg-[#131620] text-white">Academy Courses & Training</option>
-              <option value="CAREERS" className="bg-[#131620] text-white">Careers & Internships</option>
-              <option value="GENERAL" className="bg-[#131620] text-white">General Inquiry</option>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Subject</label>
+            <select name="type" required defaultValue="" className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all appearance-none cursor-pointer text-sm shadow-sm">
+              <option value="" disabled className="text-slate-400">Select a topic</option>
+              <option value="ENTERPRISE_PROJECT" className="text-slate-900">Hire Arbotrix (Enterprise/Custom IoT)</option>
+              <option value="HARDWARE_SALES" className="text-slate-900">Hardware Inquiry (Drones, UGVs)</option>
+              <option value="COURSE_TRAINING" className="text-slate-900">Academy Courses & Training</option>
+              <option value="CAREERS" className="text-slate-900">Careers & Internships</option>
+              <option value="GENERAL" className="text-slate-900">General Inquiry</option>
             </select>
           </div>
           
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Message</label>
-            <textarea name="message" required rows="3" placeholder="Tell us about your project..." className="bg-[#131620] border border-gray-800 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors resize-none text-sm"></textarea>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Message</label>
+            {/* FIX: Reduced from rows="3" to rows="2" */}
+            <textarea name="message" required rows="2" placeholder="Tell us about your project..." className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none text-sm shadow-sm"></textarea>
           </div>
           
           <button 
             type="submit" 
             disabled={isPending}
-            className="mt-2 w-full group relative flex items-center justify-center gap-3 px-8 py-3.5 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden uppercase tracking-widest text-sm"
+            className="mt-1 w-full group relative flex items-center justify-center gap-3 px-8 py-3 font-heading font-black text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden uppercase tracking-widest text-xs"
           >
             {isPending ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <>
-                Send Message
+                Transmit Signal
                 <Send className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </>
             )}
@@ -102,22 +109,26 @@ export default function ContactForm() {
         </form>
       </div>
 
-      {/* RIGHT SIDE: Stats Card */}
+      {/* RIGHT SIDE: Light Theme Stats Card */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-[#131620] border border-gray-800 rounded-3xl p-6 lg:p-8 flex flex-col shadow-2xl h-fit w-full my-auto"
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        // FIX: Reduced padding from p-8 lg:p-10 to p-6 lg:p-8
+        className="bg-white border border-slate-200 rounded-3xl p-6 lg:p-8 flex flex-col shadow-[0_15px_40px_rgba(0,0,0,0.06)] h-fit w-full my-auto"
       >
-        <p className="font-mono text-accent-blue text-[10px] uppercase tracking-[0.2em] font-bold mb-3">
-          [ CLIENT FEEDBACK ]
+        <p className="font-heading text-blue-600 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
+          [ METRICS ]
         </p>
-        <h2 className="text-3xl lg:text-4xl font-black tracking-tighter text-white uppercase leading-tight mb-2">
-          Why they <br className="hidden sm:block"/> <span className="text-accent-blue">trust us.</span>
-        </h2>
-        <p className="text-gray-400 text-xs mb-8">
-          Numbers backed by real client and student feedback.
+        <h3 className="text-3xl lg:text-4xl font-heading font-black tracking-tighter text-slate-900 uppercase leading-tight mb-2">
+          Why they <br className="hidden sm:block"/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">trust us.</span>
+        </h3>
+        {/* FIX: Reduced mb-10 to mb-6 */}
+        <p className="text-slate-500 font-medium text-xs mb-6">
+          Numbers backed by real client deployments.
         </p>
 
+        {/* FIX: Tightened flex gap from gap-5 to gap-4 */}
         <div className="flex flex-col gap-4 flex-grow">
           {[
             { label: "Client Satisfaction", value: "97%" },
@@ -127,39 +138,38 @@ export default function ContactForm() {
             { label: "Hardware Uptime Rate", value: "99%" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-1.5">
-              <div className="flex justify-between text-[10px] font-bold text-gray-300 uppercase tracking-wider">
+              <div className="flex justify-between text-[10px] font-bold text-slate-700 uppercase tracking-wider">
                 <span>{stat.label}</span>
-                <span className="text-accent-blue">{stat.value}</span>
+                <span className="text-blue-600 font-black">{stat.value}</span>
               </div>
-              <div className="w-full h-1 bg-[#0B0D14] rounded-full overflow-hidden border border-gray-800/50">
+              <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
                 <motion.div 
                   initial={{ width: 0 }}
                   whileInView={{ width: stat.value }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-accent-blue/40 to-accent-blue rounded-full shadow-[0_0_10px_rgba(0,163,255,0.5)] relative" 
-                >
-                  <div className="absolute top-0 right-0 w-4 h-full bg-white/40 blur-[2px]" />
-                </motion.div>
+                  className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" 
+                />
               </div>
             </div>
           ))}
         </div>
 
-        <div className="w-full h-px bg-gray-800 my-6" />
+        {/* FIX: Reduced margin from my-8 to my-6 */}
+        <div className="w-full h-px bg-slate-100 my-6" />
         
-        <div className="flex justify-between items-center px-2">
+        <div className="flex justify-between items-center px-4">
            <div className="flex flex-col items-center">
-             <span className="text-xl font-black text-white">50+</span>
-             <span className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-1">Projects</span>
+             <span className="text-2xl font-heading font-black text-slate-900">50+</span>
+             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Projects</span>
            </div>
            <div className="flex flex-col items-center">
-             <span className="text-xl font-black text-white">5★</span>
-             <span className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-1">Rating</span>
+             <span className="text-2xl font-heading font-black text-slate-900">5★</span>
+             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Rating</span>
            </div>
            <div className="flex flex-col items-center">
-             <span className="text-xl font-black text-white">2yr</span>
-             <span className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-1">Support</span>
+             <span className="text-2xl font-heading font-black text-slate-900">2yr</span>
+             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Support</span>
            </div>
         </div>
       </motion.div>

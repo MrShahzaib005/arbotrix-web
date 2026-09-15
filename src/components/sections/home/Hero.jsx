@@ -63,7 +63,7 @@ export default function Hero() {
       </div>
 
       {/* TIGHTENED GAP: gap-12 -> gap-8 to bring images closer to text */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center flex-1">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-5 items-center flex-1">
         
         {/* LEFT COLUMN: Text Content */}
         <div className="lg:col-span-6 flex flex-col justify-center">
@@ -81,7 +81,7 @@ export default function Hero() {
               </div>
 
               {/* FIX: Reduced text-7xl to lg:text-[3.5rem] and tightened leading to prevent 5-line wraps */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 tracking-tighter uppercase leading-[1.05] mb-5 drop-shadow-sm max-w-2xl">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 tracking-tighter uppercase leading-[1.05] mb-3 drop-shadow-sm max-w-2xl">
                 {activeData.headline.split('.')[0]}. <br />
                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${activeData.accent}`}>
                   {activeData.headline.split('.')[1] || "Real Systems."}
@@ -89,7 +89,7 @@ export default function Hero() {
               </h1>
 
               {/* FIX: Kept text-base for compact readability */}
-              <p className="font-sans text-base text-slate-600 font-medium max-w-lg mb-8 leading-relaxed">
+              <p className="font-sans text-base text-slate-600 font-medium max-w-lg mb-3 leading-relaxed">
                 {activeData.problemText}
               </p>
 

@@ -102,7 +102,7 @@ export default function Footer() {
 
             <h3 className="text-white font-bold text-sm mb-4">Follow Us</h3>
             <div className="flex items-center gap-3">
-              <a href="https://github.com/MrShahzaib005" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all">
+              <a href="https://github.com/Arbotrix" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all">
                 <FaGithub className="w-4 h-4" />
               </a>
               <a href="https://www.linkedin.com/company/arbotrix/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all">
