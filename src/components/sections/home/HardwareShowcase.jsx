@@ -62,7 +62,7 @@ export const HardwareShowcase = () => {
               Arbotrix Labs
             </div>
             
-            <h2 className="font-heading font-black text-4xl md:text-5xl text-slate-900 uppercase tracking-tighter mb-6 leading-[0.95]">
+            <h2 className="font-heading font-black text-4xl md:text-5xl text-slate-900 uppercase tracking-tighter mb-3 leading-[0.95]">
               Hardware <br />
               <span className="text-blue-600 drop-shadow-sm">In Development.</span>
             </h2>
