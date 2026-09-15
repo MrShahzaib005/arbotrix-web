@@ -54,7 +54,7 @@ export default function Hero() {
 
   return (
     // Replaced min-h-[100svh] with a hard min-h-screen to prevent layout crushing, adjusted padding
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-50 pt-32 pb-16 font-sans">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-50 pt-25 pb-16 font-sans">
       
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0">
@@ -75,13 +75,13 @@ export default function Hero() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[10px] font-bold uppercase tracking-widest text-slate-600 mb-5 font-sans">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[10px] font-bold uppercase tracking-widest text-slate-600 mb-3 font-sans">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
                 {activeData.category}
               </div>
 
               {/* FIX: Reduced text-7xl to lg:text-[3.5rem] and tightened leading to prevent 5-line wraps */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 tracking-tighter uppercase leading-[1.05] mb-3 drop-shadow-sm max-w-2xl">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 tracking-tighter uppercase leading-[1.05] mb-2 drop-shadow-sm max-w-2xl">
                 {activeData.headline.split('.')[0]}. <br />
                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${activeData.accent}`}>
                   {activeData.headline.split('.')[1] || "Real Systems."}
@@ -89,7 +89,7 @@ export default function Hero() {
               </h1>
 
               {/* FIX: Kept text-base for compact readability */}
-              <p className="font-sans text-base text-slate-600 font-medium max-w-lg mb-3 leading-relaxed">
+              <p className="font-sans text-base text-slate-600 font-medium max-w-lg mb-2 leading-relaxed">
                 {activeData.problemText}
               </p>
 

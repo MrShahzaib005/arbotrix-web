@@ -46,7 +46,7 @@ const HARDWARE = [
 
 export const HardwareShowcase = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-50 font-sans">
+    <section className="py-18 relative overflow-hidden bg-slate-50 font-sans">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
