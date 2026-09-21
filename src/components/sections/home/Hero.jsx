@@ -7,6 +7,16 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 // The Data Matrix: Gradients updated to darker, richer tones for white background contrast
 const HERO_SCENARIOS = [
   {
+    id: "dodo-x",
+    category: "04 // Internal Logistics",
+    headline: "Secure Multi-Tray Transport.",
+    problemText: "Meet the future of internal logistics. Dodo is a self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport. Controlled seamlessly via Tailscale remote networking and ROS bridge integration.",
+    image: "/images/dodo-x.png",
+    link: "/products/dodo-bot",
+    accent: "from-teal-500 to-cyan-600",
+    scale: "scale-100" // Adjust this scale up or down depending on how large your Dodo-X source PNG is
+  },
+  {
     id: "tera-x",
     category: "01 // UGV Platform",
     headline: "Industrial Autonomy. Real World Systems.",

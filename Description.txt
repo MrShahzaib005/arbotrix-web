@@ -24,7 +24,7 @@ Deployment: Edge-ready deployment on Vercel.
 ✨ Key Features
 Premium "Vibe-Coded" UI: A high-end interface featuring a floating "pill" glass-morphism navbar and animated hero sections.
 
-Dynamic Project Showcase: A staggered masonry grid displaying active R&D projects (DodoX, Tera-X, etc.).
+Dynamic Project Showcase: A staggered masonry grid displaying active R&D projects (Dodo, Tera-X, etc.).
 
 Lead Generation Engine: Integrated backend for real-time user engagement and "Notify Me" waitlist management.
 

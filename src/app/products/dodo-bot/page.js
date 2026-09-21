@@ -4,7 +4,7 @@ import { NavbarClient } from "@/components/layout/NavbarClient";
 import { ChevronRight, Smartphone, Network, Server, Layers, Quote } from "lucide-react";
 
 export const metadata = {
-  title: "Dodo-X Delivery Robot | Arbotrix Engineering",
+  title: "Dodo Delivery Robot | Arbotrix Engineering",
   description: "Self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport via Tailscale networking.",
 };
 
@@ -33,7 +33,7 @@ export default function DodoBotProductPage() {
             </div>
 
             <h1 className="text-6xl lg:text-8xl font-heading font-black text-slate-900 tracking-tighter uppercase mb-3 leading-[0.95] drop-shadow-sm">
-              Dodo-X <br />
+              Dodo <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                 Transport
               </span>
@@ -44,7 +44,7 @@ export default function DodoBotProductPage() {
             </p>
 
             <p className="text-slate-600 text-lg leading-relaxed mb-4 max-w-xl font-medium">
-              Meet the future of internal logistics. Dodo-X is a self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport. No simulators, just relentless, production-ready autonomy.
+              Meet the future of internal logistics. Dodo is a self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport. No simulators, just relentless, production-ready autonomy.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -52,7 +52,7 @@ export default function DodoBotProductPage() {
                 View Specifications
               </a>
               <Link href="/contact" className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white border border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50 font-heading font-bold text-xs uppercase tracking-widest transition-all shadow-sm hover:shadow">
-                Reserve Dodo-X <ChevronRight className="w-4 h-4" />
+                Reserve Dodo <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function DodoBotProductPage() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-100/60 blur-[80px] rounded-full -z-10" />
             <Image
               src="/images/dodo-x.png" // FIX: Ensure your image is named correctly in the public/images folder
-              alt="Dodo-X Delivery Robot"
+              alt="Dodo Delivery Robot"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.15)] z-10 relative hover:scale-105 transition-transform duration-700"
@@ -132,7 +132,7 @@ export default function DodoBotProductPage() {
               </div>
               <h3 className="text-xl font-heading font-black text-slate-900 mb-3 uppercase tracking-tight">Tailscale Integration</h3>
               <p className="text-slate-600 text-sm font-medium leading-relaxed">
-                No local network vulnerability. Dodo-X routes all telemetry and command payloads through a secure Tailscale VPN, allowing remote access and fleet monitoring from anywhere in the world.
+                No local network vulnerability. Dodo routes all telemetry and command payloads through a secure Tailscale VPN, allowing remote access and fleet monitoring from anywhere in the world.
               </p>
             </div>
 
@@ -185,7 +185,7 @@ export default function DodoBotProductPage() {
       <section className="bg-white py-24 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-heading font-black text-slate-900 tracking-tighter uppercase mb-6 drop-shadow-sm">
-            Deploy Dodo-X Today.
+            Deploy Dodo Today.
           </h2>
           <p className="text-slate-600 mb-10 font-medium text-lg leading-relaxed">
             Integrate intelligent internal logistics into your operations and eliminate workflow bottlenecks.

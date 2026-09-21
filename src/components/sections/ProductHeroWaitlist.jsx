@@ -33,7 +33,7 @@ export default function ProductsHero() {
             <div className="flex items-center gap-3 mb-6">
               <Crosshair className="w-4 h-4 text-accent-blue" />
               <span className="text-accent-blue font-mono text-xs uppercase tracking-[0.2em] font-bold">
-                Codename: Dodo-X
+                Codename: Dodo
               </span>
             </div>
 
@@ -47,7 +47,7 @@ export default function ProductsHero() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg text-gray-400 max-w-md leading-relaxed mb-10 lg:border-l-2 lg:border-gray-800 lg:pl-4"
           >
-            Meet the future of internal logistics: Dodo-X. A self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport. No simulators, just relentless, production-ready autonomy.
+            Meet the future of internal logistics: Dodo. A self-contained autonomous vehicle engineered for secure, intelligent, multi-tray transport. No simulators, just relentless, production-ready autonomy.
           </motion.p>
 
           <motion.div 
@@ -56,7 +56,7 @@ export default function ProductsHero() {
           >
             <button className="group relative flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-accent-blue hover:bg-blue-600 rounded-full shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] overflow-hidden">
               <Link href="/contact" className="relative z-10">
-                Reserve Dodo-X
+                Reserve Dodo
               </Link>
               <ArrowRight className="absolute right-5 w-5 h-5 opacity-0 transition-all duration-300 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0" />
             </button>
@@ -77,7 +77,7 @@ export default function ProductsHero() {
             {/* 1. The Robot: White background seamlessly merges with the wrapper */}
             <img 
               src="/images/featured-vacuum.jpeg" 
-              alt="Arbotrix Dodo-X" 
+              alt="Arbotrix Dodo" 
               className="absolute inset-0 w-full h-full object-contain p-6 relative z-10 pointer-events-none"
             />
 
@@ -115,7 +115,7 @@ export default function ProductsHero() {
         className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none flex justify-center z-0"
       >
         <span className="text-[18vw] font-black tracking-tighter text-white leading-none translate-y-1/4 select-none whitespace-nowrap">
-          DODO-X
+          DODO-X  
         </span>
       </motion.div>
 

@@ -91,14 +91,14 @@ export default function DodoXClient() {
 
                 <motion.img
                   src="/images/dodo-front.png"
-                  alt="Dodo-X Robot"
+                  alt="Dodo Robot"
                   className="relative z-10 w-full max-w-[320px] object-contain drop-shadow-2xl"
                   animate={{ y: [0, -14, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 />
 
                 <div className="absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-xs text-gray-500 uppercase tracking-widest">
-                  Dodo-X v0.3
+                  Dodo v0.3
                 </div>
               </div>
             </motion.div>
@@ -120,7 +120,7 @@ export default function DodoXClient() {
                 A complete hardware-software integration built on <span className="text-white font-bold">ROS2 Humble</span>, <span className="text-white font-bold">Raspberry Pi 5</span>, and <span className="text-white font-bold">OAK-D spatial AI</span>.
               </p>
               <p className="text-gray-500 text-base leading-relaxed mb-10">
-                Dodo-X is designed for hospital corridors, hotel floors, and warehouse environments. It maps its surroundings in real time, localizes itself, and navigates autonomously — all without cloud connectivity.
+                Dodo is designed for hospital corridors, hotel floors, and warehouse environments. It maps its surroundings in real time, localizes itself, and navigates autonomously — all without cloud connectivity.
               </p>
 
               <div className="grid grid-cols-3 gap-4 mb-10">
@@ -275,7 +275,7 @@ export default function DodoXClient() {
           <div className="relative z-10">
             <p className="font-mono text-accent-blue text-[10px] uppercase tracking-[0.2em] font-bold mb-3">[ Interested? ]</p>
             <h2 className="font-black text-3xl text-white uppercase tracking-tighter">
-              Want Dodo-X in <span className="text-accent-blue">Your Facility?</span>
+              Want Dodo in <span className="text-accent-blue">Your Facility?</span>
             </h2>
             <p className="text-gray-400 mt-2 text-sm max-w-md">
               Get in touch to discuss deployment, customization, or partnership opportunities.

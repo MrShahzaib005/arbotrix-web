@@ -10,6 +10,16 @@ export const metadata = {
 
 const HARDWARE_CATALOG = [
   {
+    id: "dodo",
+    name: "Dodo",
+    classification: "Internal Logistics Robot",
+    description: "Self-contained autonomous delivery vehicle engineered for secure, multi-tray transport. Controlled seamlessly via secure Tailscale remote networking and ROS bridge integration.",
+    image: "/images/dodo-x.png", // NOTE: Replace with your actual Dodo-X transparent PNG
+    accent: "text-cyan-600",
+    bg: "bg-cyan-50",
+    link: "/products/dodo-bot"
+  },
+  {
     id: "tera-x",
     name: "Tera-X",
     classification: "Unmanned Ground Vehicle (UGV)",
@@ -20,14 +30,14 @@ const HARDWARE_CATALOG = [
     link: "/products/tera-x"
   },
   {
-    id: "omni-vac",
-    name: "Omni-Vac",
+    id: "optic-clean",
+    name: "Optic-Clean",
     classification: "Autonomous Floor System",
     description: "Next-generation indoor maintenance powered by OAK-D spatial perception, LiDAR mapping, and MobileNetV2 edge classification.",
     image: "/images/optic-clean.png",
     accent: "text-indigo-600",
     bg: "bg-indigo-50",
-    link: "/products/omni-vac"
+    link: "/products/optic-clean"
   },
   {
     id: "aero-x",
@@ -39,16 +49,7 @@ const HARDWARE_CATALOG = [
     bg: "bg-orange-50",
     link: "/products/aero-x"
   },
-  {
-    id: "dodo-x",
-    name: "Dodo-X",
-    classification: "Internal Logistics Robot",
-    description: "Self-contained autonomous delivery vehicle engineered for secure, multi-tray transport. Controlled seamlessly via secure Tailscale remote networking and ROS bridge integration.",
-    image: "/images/dodo-x.png", // NOTE: Replace with your actual Dodo-X transparent PNG
-    accent: "text-cyan-600",
-    bg: "bg-cyan-50",
-    link: "/products/dodo-bot"
-  }
+  
 ];
 
 export default function ProductsCatalogPage() {

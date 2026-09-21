@@ -7,7 +7,7 @@ const PROJECTS = [
   {
     id: 1,
     category: "Flagship Platform",
-    title: "DodoX",
+    title: "Dodo",
     desc: "Our official versatile robotic architecture designed for complex, multi-agent environments and advanced computational tasks.",
     img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
     offset: "",

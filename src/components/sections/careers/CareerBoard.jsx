@@ -60,7 +60,7 @@ const JOBS = [
     type: "Full-time",
     salary: "Paid",
     status: "Open",
-    about: "Lead mechanical design of robotic structures from concept sketch to manufactured part. Work with our hardware team on DodoX and Tera-X platforms.",
+    about: "Lead mechanical design of robotic structures from concept sketch to manufactured part. Work with our hardware team on Dodo and Tera-X platforms.",
     requirements: [
       "Proficiency in SolidWorks or Fusion 360",
       "Experience with FDM/SLA 3D printing",

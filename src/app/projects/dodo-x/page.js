@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import DodoXClient from "@/components/sections/DodoXClient";
 
 export const metadata = {
-  title: "Dodo-X | Arbotrix Robotics",
+  title: "Dodo | Arbotrix Robotics",
   description: "Autonomous floor navigation platform built on ROS2, Raspberry Pi 5, and OAK-D spatial AI.",
 };
 

@@ -22,9 +22,9 @@ const NAV_LINKS = [
         bg: "bg-blue-50"
       },
       { 
-        name: "Omni-Vac", 
+        name: "Optic-Clean", 
         desc: "Autonomous Floor System", 
-        href: "/products/omni-vac",
+        href: "/products/optic-clean",
         image: "/images/optic-clean.png",
         accent: "text-indigo-600",
         bg: "bg-indigo-50"
@@ -38,7 +38,7 @@ const NAV_LINKS = [
         bg: "bg-orange-50"
       },
       { 
-        name: "Dodo-X", 
+        name: "Dodo", 
         desc: "Internal Logistics", 
         href: "/products/dodo-bot",
         image: "/images/dodo-x.png",
