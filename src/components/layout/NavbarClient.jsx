@@ -14,6 +14,14 @@ const NAV_LINKS = [
     layout: "mega",
     dropdown: [
       { 
+        name: "Dodo", 
+        desc: "Internal Logistics", 
+        href: "/products/dodo-bot",
+        image: "/images/dodo-x.png",
+        accent: "text-cyan-600",
+        bg: "bg-cyan-50"
+      },
+      { 
         name: "Tera-X", 
         desc: "Unmanned Ground Vehicle", 
         href: "/products/tera-x",
@@ -36,14 +44,6 @@ const NAV_LINKS = [
         image: "/images/aero-x.png",
         accent: "text-orange-600",
         bg: "bg-orange-50"
-      },
-      { 
-        name: "Dodo", 
-        desc: "Internal Logistics", 
-        href: "/products/dodo-bot",
-        image: "/images/dodo-x.png",
-        accent: "text-cyan-600",
-        bg: "bg-cyan-50"
       },
     ]
   },
