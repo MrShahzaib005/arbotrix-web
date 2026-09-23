@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 // Using your exact component path
 import ContactClient from "@/components/sections/contact/ContactClient";
+import ContactHero from "@/components/sections/contact/ContactHero";
+import ContactForm from "@/components/sections/contact/ContactHero";
 
 export const metadata = {
   title: "Contact | Arbotrix Robotics",
@@ -18,7 +20,6 @@ export default function ContactPage() {
       <div className="relative z-20">
         <Navbar />
       </div>
-      
       <ContactClient />
     </main>
   );
