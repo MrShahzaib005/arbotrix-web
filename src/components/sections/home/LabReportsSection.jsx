@@ -67,12 +67,12 @@ export default function LabReportsSection() {
               From raw sheet metal to deployed ROS2 nodes. Read the technical documentation detailing how we engineer our physical platforms.
             </p>
           </div>
-          <Link 
+          {/* <Link 
             href="/case-study" 
             className="hidden md:flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest hover:text-blue-600 transition-colors"
           >
             View All Reports <ArrowRight className="w-4 h-4" />
-          </Link>
+          </Link> */}
         </div>
 
         {/* Scalable Grid Layout */}
