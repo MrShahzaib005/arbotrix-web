@@ -1,15 +1,12 @@
 import { Navbar } from "@/components/layout/Navbar";
 import Hero from "@/components/sections/home/Hero";
 import WhatWeDo from "@/components/sections/home/WhatWeDo";
-// import NumbersBar from "@/components/sections/home/NumbersBar";
-// import FeaturedProject from "@/components/sections/home/FeaturedProject";
-// import HomeProductTeaser from "@/components/sections/home/HomeProductTeaser";
+import LabReportsSection from "@/components/sections/home/LabReportsSection";
 import TeamSection from "@/components/sections/home/TeamSection";
-// import EcosystemOrbit from "@/components/sections/home/EcosystemOrbit";
+
 import PreFooterCTA from "@/components/sections/home/PreFooterCTA";
 import { HardwareShowcase } from "@/components/sections/home/HardwareShowcase";
-// import RobotShowcaseGrid from "@/components/sections/RobotShowcaseGrid";
-// import ProductTeaser from "@/components/sections/ProductTeaser";
+
 
 export const metadata = {
   title: "Arbotrix | Engineering Autonomy",
@@ -22,7 +19,8 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <HardwareShowcase />
-      
+      {/* <FeaturedCaseStudy /> */}
+      <LabReportsSection />
       {/* <NumbersBar /> */}
       <WhatWeDo />
       {/* <FeaturedProject /> */}
