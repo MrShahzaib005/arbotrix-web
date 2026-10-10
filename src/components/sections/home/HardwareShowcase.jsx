@@ -104,7 +104,7 @@ export const HardwareShowcase = () => {
                   className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-700 ease-out z-10 drop-shadow-xl"
                 />
                 <div
-                  className={`absolute top-5 left-5 px-3 py-1 rounded-full border text-[9px] font-heading font-black uppercase tracking-[0.2em] ${item.bgAccent} ${item.accent} z-20 shadow-sm`}
+                  className={`absolute top-5 left-5 px-3 py-1 rounded-full border text-[10px] md:text-[11px] font-heading font-black uppercase tracking-[0.2em] ${item.bgAccent} ${item.accent} z-20 shadow-sm`}
                 ></div>
               </div>
 

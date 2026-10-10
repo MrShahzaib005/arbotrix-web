@@ -161,15 +161,15 @@ export default function ContactForm() {
         <div className="flex justify-between items-center px-4">
            <div className="flex flex-col items-center">
              <span className="text-2xl font-heading font-black text-slate-900">50+</span>
-             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Projects</span>
+             <span className="text-[10px] md:text-[11px] text-slate-500 uppercase tracking-widest font-bold mt-1">Projects</span>
            </div>
            <div className="flex flex-col items-center">
              <span className="text-2xl font-heading font-black text-slate-900">5★</span>
-             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Rating</span>
+             <span className="text-[10px] md:text-[11px] text-slate-500 uppercase tracking-widest font-bold mt-1">Rating</span>
            </div>
            <div className="flex flex-col items-center">
              <span className="text-2xl font-heading font-black text-slate-900">2yr</span>
-             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Support</span>
+             <span className="text-[10px] md:text-[11px] text-slate-500 uppercase tracking-widest font-bold mt-1">Support</span>
            </div>
         </div>
       </motion.div>

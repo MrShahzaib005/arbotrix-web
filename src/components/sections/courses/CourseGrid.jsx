@@ -57,7 +57,8 @@ export default function CourseGrid({ courses }) {
               <button
                 key={tab.value}
                 onClick={() => handleFilter(tab.value)}
-                className={`px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                // FIX #2: Added min-h-[44px] and responsive text sizes to satisfy Google Mobile Usability
+                className={`px-6 py-2 min-h-[44px] rounded-xl text-[11px] md:text-[10px] font-bold uppercase tracking-widest transition-all flex items-center justify-center ${
                   isActive 
                     ? "bg-slate-900 text-white shadow-md" 
                     : "bg-transparent text-slate-500 hover:bg-slate-100 hover:text-slate-900"
@@ -72,10 +73,23 @@ export default function CourseGrid({ courses }) {
 
       {/* COURSE GRID */}
       {filteredCourses.length === 0 ? (
-        <div className="w-full bg-white border border-slate-200 rounded-2xl p-12 flex flex-col items-center justify-center text-center shadow-sm">
-           <SearchX className="w-10 h-10 text-slate-400 mb-4" />
-           <h3 className="text-xl font-heading font-black text-slate-900 mb-2 uppercase tracking-tighter">No Courses Found</h3>
-           <p className="text-slate-500 text-sm font-medium">There are currently no active modules for this clearance level.</p>
+        // FIX #6: High-conversion empty state preventing dead ends
+        <div className="flex flex-col items-center justify-center py-24 px-6 text-center bg-white border border-slate-200 rounded-[2rem] shadow-sm w-full">
+          <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-6 border border-slate-100">
+            <SearchX className="w-8 h-8 text-slate-400" />
+          </div>
+          <h3 className="text-2xl font-heading font-black text-slate-900 uppercase tracking-tighter mb-3">
+            No Modules Found
+          </h3>
+          <p className="text-slate-500 font-medium max-w-md mx-auto mb-8">
+            We are currently developing new curriculums for this track. Check out our foundational modules in the meantime.
+          </p>
+          <button 
+            onClick={() => handleFilter("ALL")} 
+            className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-heading font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)]"
+          >
+            View All Courses
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -85,35 +99,31 @@ export default function CourseGrid({ courses }) {
             return (
               <div 
                 key={course.id} 
-                // FIX: Tightened padding (p-6), radius (rounded-2xl), and shadow
                 className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col transition-all duration-300 shadow-sm relative overflow-hidden group hover:border-blue-300 hover:shadow-md"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                 <div className="mb-4 flex items-center">
-                  <span className={`text-[9px] font-black tracking-widest px-2.5 py-1 rounded-md border uppercase shadow-sm ${levelColor}`}>
+                  <span className={`text-[10px] md:text-[11px] font-black tracking-widest px-2.5 py-1 rounded-md border uppercase shadow-sm ${levelColor}`}>
                     {course.level}
                   </span>
                 </div>
 
-                {/* FIX: Dropped to text-lg and added line-clamp to prevent massive height shifts */}
                 <h3 className="text-lg font-heading font-black text-slate-900 mb-2 tracking-tighter uppercase group-hover:text-blue-600 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 
-                {/* FIX: Tightened to text-xs with line-clamp */}
                 <p className="text-slate-500 text-xs mb-5 leading-relaxed flex-grow font-medium line-clamp-3">
                   {course.description}
                 </p>
 
-                {/* FIX: Shrunk icons (w-6 h-6), gaps (gap-2.5), and text sizes */}
                 <div className="flex flex-col gap-3 mb-6 pt-4 border-t border-slate-100">
                   <div className="flex items-start gap-2.5 text-xs text-slate-600">
                     <div className="w-6 h-6 rounded-md bg-cyan-50 border border-cyan-100 flex items-center justify-center shrink-0 mt-0.5">
                       <Cpu className="w-3 h-3 text-cyan-600" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Hardware Kit</span>
+                      <span className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Hardware Kit</span>
                       <span className="font-bold text-slate-900 leading-tight line-clamp-1">{course.hardware || "Standard Kit"}</span>
                     </div>
                   </div>
@@ -133,7 +143,6 @@ export default function CourseGrid({ courses }) {
                   </div>
                 </div>
 
-                {/* FIX: Tightened button padding and text scale */}
                 <Link 
                   href={`/courses/${course.id}`}
                   className="w-full flex items-center justify-between px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-heading font-black tracking-widest text-[10px] uppercase hover:from-blue-700 hover:to-cyan-600 shadow-sm hover:shadow-md transition-all duration-300 group/btn mt-auto"

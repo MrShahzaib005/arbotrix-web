@@ -13,40 +13,42 @@ export default function CourseSidebar({ courses = [] }) {
 
   // DYNAMIC COUNT LOGIC: Calculate totals from the live database prop safely
   const dynamicLevels = [
-    { 
-      id: "BEGINNER", 
-      label: "Beginner", 
-      count: courses.filter(c => c.level?.toUpperCase() === "BEGINNER").length 
+    {
+      id: "BEGINNER",
+      label: "Beginner",
+      count: courses.filter((c) => c.level?.toUpperCase() === "BEGINNER")
+        .length,
     },
-    { 
-      id: "INTERMEDIATE", 
-      label: "Intermediate", 
-      count: courses.filter(c => c.level?.toUpperCase() === "INTERMEDIATE").length 
+    {
+      id: "INTERMEDIATE",
+      label: "Intermediate",
+      count: courses.filter((c) => c.level?.toUpperCase() === "INTERMEDIATE")
+        .length,
     },
-    { 
-      id: "ADVANCED", 
-      label: "Advanced", 
-      count: courses.filter(c => c.level?.toUpperCase() === "ADVANCED").length 
+    {
+      id: "ADVANCED",
+      label: "Advanced",
+      count: courses.filter((c) => c.level?.toUpperCase() === "ADVANCED")
+        .length,
     },
   ];
 
   const handleFilterClick = (levelId) => {
     const params = new URLSearchParams(searchParams);
-    
+
     // Toggle logic: If they click the active one, remove the filter. Else, set it.
     if (currentLevel === levelId) {
       params.delete("level");
     } else {
       params.set("level", levelId);
     }
-    
+
     // Push the new URL without scrolling to the top of the page
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
     <div className="bg-white border border-gray-200 rounded-3xl p-6 lg:p-8 sticky top-24 shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
-      
       {/* Sidebar Header */}
       <div className="flex items-center gap-3 mb-8 pb-4 border-b border-gray-100">
         <Filter className="w-5 h-5 text-cyan-600" />
@@ -64,15 +66,16 @@ export default function CourseSidebar({ courses = [] }) {
           </h4>
         </div>
 
-        {/* Map over the newly calculated dynamicLevels instead of the hardcoded one */}
+        {/* Map over the newly calculated dynamicLevels */}
         {dynamicLevels.map((level) => {
           const isActive = currentLevel === level.id;
-          
+
           return (
             <button
               key={level.id}
               onClick={() => handleFilterClick(level.id)}
-              className="flex items-center justify-between w-full group transition-colors"
+              // FIX: Added py-3 and min-h-[44px] to guarantee Google Mobile Usability compliance
+              className="flex items-center justify-between w-full py-3 min-h-[44px] group transition-colors"
             >
               <div className="flex items-center gap-3">
                 {isActive ? (
@@ -80,13 +83,17 @@ export default function CourseSidebar({ courses = [] }) {
                 ) : (
                   <Square className="w-5 h-5 text-slate-300 group-hover:text-cyan-400 transition-colors" />
                 )}
-                <span className={`text-sm font-medium transition-colors ${isActive ? "text-slate-900 font-bold" : "text-slate-500 group-hover:text-slate-900"}`}>
+                <span
+                  className={`text-sm font-medium transition-colors ${isActive ? "text-slate-900 font-bold" : "text-slate-500 group-hover:text-slate-900"}`}
+                >
                   {level.label}
                 </span>
               </div>
-              
+
               {/* Dynamic Count Badge */}
-              <span className={`text-[10px] font-bold px-2 py-1 rounded-md border ${isActive ? "bg-cyan-50 border-cyan-200 text-cyan-700" : "bg-slate-50 border-slate-200 text-slate-400"}`}>
+              <span
+                className={`text-[10px] font-bold px-2 py-1 rounded-md border ${isActive ? "bg-cyan-50 border-cyan-200 text-cyan-700" : "bg-slate-50 border-slate-200 text-slate-400"}`}
+              >
                 {level.count}
               </span>
             </button>
@@ -96,14 +103,13 @@ export default function CourseSidebar({ courses = [] }) {
 
       {/* Clear Filters Button */}
       {currentLevel && (
-        <button 
+        <button
           onClick={() => router.push(pathname, { scroll: false })}
           className="mt-8 w-full py-3 rounded-xl border border-red-200 text-red-600 text-xs font-bold uppercase tracking-widest hover:bg-red-50 hover:border-red-300 transition-colors"
         >
           Clear Filters
         </button>
       )}
-
     </div>
   );
 }

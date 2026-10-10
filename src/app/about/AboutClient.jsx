@@ -213,7 +213,7 @@ export default function AboutClient() {
                       <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">
                         {founder.role}
                       </p>
-                      <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-500 uppercase tracking-widest bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg w-fit">
+                      <div className="flex items-center gap-1.5 text-[10px] md:text-[11px] font-bold text-slate-500 uppercase tracking-widest bg-slate-50 border border-slate-200 px-2.5 py-1.5 rounded-lg w-fit">
                         <Network className="w-3 h-3 text-cyan-500 shrink-0" />
                         <span className="leading-tight">{founder.focus}</span>
                       </div>
@@ -301,7 +301,7 @@ export default function AboutClient() {
                   <h3 className="text-xl font-heading font-black text-slate-900 tracking-tight uppercase mb-1 group-hover:text-cyan-600 transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-[9px] font-black text-cyan-600 uppercase tracking-widest mb-4">
+                  <p className="text-[10px] md:text-[11px] font-black text-cyan-600 uppercase tracking-widest mb-4">
                     {member.role}
                   </p>
                   <p className="text-xs font-medium text-slate-500 leading-relaxed">

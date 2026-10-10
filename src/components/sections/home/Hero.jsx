@@ -85,7 +85,7 @@ export default function Hero() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[10px] font-bold uppercase tracking-widest text-slate-600 mb-3 font-sans">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-600 mb-3 font-sans">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
                 {activeData.category}
               </div>
@@ -183,7 +183,7 @@ export default function Hero() {
                 0{index + 1}
               </div>
               <div className="flex flex-col">
-                <span className={`text-[10px] font-bold uppercase tracking-widest font-sans ${activeIndex === index ? "text-blue-500" : "text-slate-400"}`}>
+                <span className={`text-[10px] md:text-xs font-bold uppercase tracking-widest font-sans ${activeIndex === index ? "text-blue-500" : "text-slate-400"}`}>
                   Select Unit
                 </span>
                 <span className={`text-xs font-semibold tracking-wide font-sans ${activeIndex === index ? "text-blue-900" : "text-slate-700"}`}>

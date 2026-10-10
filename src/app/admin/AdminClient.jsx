@@ -88,7 +88,7 @@ export default function AdminClient({ initialData, students }) {
                   {item.message ? (
                     // LEAD CARD
                     <>
-                      <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-black uppercase mb-6 w-fit">LEAD</div>
+                      <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] md:text-[11px] font-black uppercase mb-6 w-fit">LEAD</div>
                       <h3 className="text-xl font-black text-white capitalize mb-1">{item.firstName} {item.lastName}</h3>
                       <p className="text-xs text-gray-500 font-mono mb-4">{item.email}</p>
                       <p className="text-sm text-gray-400 mb-6 flex-grow">{item.message}</p>
@@ -96,7 +96,7 @@ export default function AdminClient({ initialData, students }) {
                   ) : (
                     // ENROLLMENT CARD
                     <>
-                      <div className={`px-3 py-1.5 rounded-full border text-[9px] font-black uppercase mb-6 w-fit ${item.status === 'APPROVED' ? 'bg-accent-blue/10 border-accent-blue/20 text-accent-blue' : 'bg-amber-500/10 border-amber-500/20 text-amber-500'}`}>
+                      <div className={`px-3 py-1.5 rounded-full border text-[10px] md:text-[11px] font-black uppercase mb-6 w-fit ${item.status === 'APPROVED' ? 'bg-accent-blue/10 border-accent-blue/20 text-accent-blue' : 'bg-amber-500/10 border-amber-500/20 text-amber-500'}`}>
                         {item.status}
                       </div>
                       <h3 className="text-xl font-black text-white capitalize mb-1">Enrollment Request</h3>

@@ -102,7 +102,7 @@ export default function LabReportsSection() {
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-3">
                      <FileText className={`w-3 h-3 ${report.accent}`} />
-                     <span className={`text-[9px] font-black uppercase tracking-widest ${report.accent}`}>
+                     <span className={`text-[10px] md:text-[11px] font-black uppercase tracking-widest ${report.accent}`}>
                        Report // {report.id}
                      </span>
                   </div>

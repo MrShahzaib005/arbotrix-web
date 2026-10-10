@@ -93,7 +93,7 @@ export default function ProductsHero() {
               <div className="flex items-center gap-2 text-[10px] font-mono text-accent-blue font-bold">
                 <Terminal className="w-3 h-3" /> [ LIVE FEED ]
               </div>
-              <div className="text-[9px] font-mono text-gray-500 uppercase tracking-widest font-bold">
+              <div className="text-[10px] md:text-[11px] font-mono text-gray-500 uppercase tracking-widest font-bold">
                 ID: ARB-X99-2
               </div>
             </div>
