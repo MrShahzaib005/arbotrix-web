@@ -16,6 +16,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { NavbarClient } from "@/components/layout/NavbarClient";
+import TerminalCTA from "@/components/sections/shared/TerminalCTA";
 
 export const metadata = {
   title: "Engineering the Tera-X UGV | Autonomous Robotics Case Study",

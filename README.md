@@ -38,11 +38,3 @@ This application is built on a modern, edge-ready tech stack optimized for speed
 
 ---
 
-## 🚀 Getting Started
-
-To run the Arbotrix platform locally, follow these steps:
-
-### 1. Clone the repository
-```bash
-git clone [https://github.com/YOUR_USERNAME/arbotrix-web.git](https://github.com/YOUR_USERNAME/arbotrix-web.git)
-cd arbotrix-web
