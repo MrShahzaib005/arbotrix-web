@@ -1,24 +1,22 @@
 import "./globals.css";
 import { Manrope, Montserrat } from "next/font/google";
 import Footer from "@/components/layout/Footer";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
-// The Body Font: Clean, legible, highly professional
 const manrope = Manrope({ 
   subsets: ["latin"],
-  variable: "--font-manrope", // New CSS variable
+  variable: "--font-manrope",
   display: "swap",
 });
 
-// The Heading Font: Geometric, wide, industrial
 const montserrat = Montserrat({ 
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
 });
 
-// This handles the Global SEO and OpenGraph configurations
 export const metadata = {
-  metadataBase: new URL('https://arbotrix.com'), // Your actual live domain
+  metadataBase: new URL('https://arbotrix.com'),
   title: {
     default: 'Arbotrix | Engineering Autonomous Systems',
     template: '%s | Arbotrix', 
@@ -46,12 +44,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  // Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX";
+
   return (
     <html lang="en" className="scroll-smooth">
-      {/* 3. Inject manrope.variable instead of inter.variable */}
-      <body className={`${manrope.variable} ${montserrat.variable} font-sans overflow-x-hidden antialiased bg-[#0B0D14] text-white`}>
+      <body className={`${manrope.variable} ${montserrat.variable} font-sans overflow-x-hidden antialiased bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white`}>
         {children}
         <Footer />
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

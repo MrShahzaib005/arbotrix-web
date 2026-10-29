@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard/', '/admin/', '/verify/', '/api/'], // Shields up
+      disallow: ['/dashboard', '/admin', '/verify', '/api'],
     },
     sitemap: 'https://arbotrix.com/sitemap.xml',
   }
