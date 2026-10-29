@@ -3,15 +3,15 @@ import prisma from "@/utils/prisma";
 export default async function sitemap() {
   const baseUrl = "https://arbotrix.com";
 
-  // 1. Fetch dynamic active courses from your PostgreSQL database
+  // 1. Fetch active courses safely using only verified model fields
   const courses = await prisma.course.findMany({
     where: { isActive: true },
-    select: { id: true, updatedAt: true }
+    select: { id: true }
   });
 
   const courseUrls = courses.map((course) => ({
     url: `${baseUrl}/courses/${course.id}`,
-    lastModified: course.updatedAt || new Date(),
+    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
