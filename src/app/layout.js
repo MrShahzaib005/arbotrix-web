@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Manrope, Montserrat } from "next/font/google";
 import Footer from "@/components/layout/Footer";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 const manrope = Manrope({ 
   subsets: ["latin"],
@@ -44,15 +44,35 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  // Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX";
+  // If the env variable fails again, it falls back to your hardcoded ID to guarantee it works.
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DCH79D99HC";
 
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* Force-inject Google Analytics asynchronously so it never blocks UI rendering */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${manrope.variable} ${montserrat.variable} font-sans overflow-x-hidden antialiased bg-slate-50 text-slate-900 selection:bg-blue-500 selection:text-white`}>
         {children}
         <Footer />
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
